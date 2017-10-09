@@ -1,0 +1,73 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 999999px;
+}
+.header{
+  padding-top: 40px;
+}
+.header div{
+  padding: 21px 0 20px 25px;
+  border-bottom: 1px solid #e7e7e7;
+}
+.header div{
+  overflow: hidden;
+}
+.header img:nth-of-type(1){
+  width: 26px;
+  height: 45px;
+  float: left;
+  margin-right: 32px;
+}
+.header img:nth-of-type(2){
+  width: 40px;
+  height: 41px;
+  float: right;
+  margin-right: 30px;
+}
+.header p:nth-of-type(2){
+  float: right;
+  margin-right: 30px;
+  font-size: 32px;
+  color: #252525;
+}
+.header p:nth-of-type(1){
+  float: left;
+  width: 547px;
+  text-align: center;
+  color: #252525;
+  height: 45px;
+  line-height: 45px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 1.5px;
+}
+#matchAbstract .header p:nth-of-type(1),#matchNoticeD .header p:nth-of-type(1){
+  font-size: 32px;
+}
+.wrap .header{
+  background: #151518;
+}
+#wonderfulT .header{
+  background: #fff;
+}
+.wrap .header p:nth-of-type(1){
+  color: #fff;
+  font-size: 36px;
+  letter-spacing: 1.5px;
+}
+.fontS .header p:nth-of-type(1){
+  font-size: 36px;
+  color: #252525;
+  letter-spacing: 1.5px;
+}
+#wonderfulT .header p:nth-of-type(1){
+  color: #252525;
+}
+#matchResult .header p:nth-of-type(1){
+  font-size: 36px;
+  color: #252525;
+  letter-spacing: 1.5px;
+}

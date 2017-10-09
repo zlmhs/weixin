@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/autoAdapt.js"></script>
+  <script src="../js/jquery.js"></script>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <script src="../js/jquery.form.js"></script>
+  <!-- <script src="../js/ort.js"></script> -->
+  <link rel="stylesheet" href="../css/weixin.css">
+  <title>曲目上传</title>
+</head>
+<body>
+  <div id="groupUp" class="wrap greyBack">
+    <!-- <div class="header">
+      <div>
+        <p>曲目上传<img onclick="window.history.go(-1)" src="../images/return.jpg" alt=""><span class ="titleSave headerRightSpan">保存</span></p>
+      </div>
+    </div> -->
+    <div class="con">
+      <!-- <div class=" groupUpVideo" id="upDivVideo1" abc="1">
+        <h3>个人作品一上传<span class="editVideo editShow">更改</span></h3>
+        <div class="mengParent">
+          <p class="againUp"><img id="upVideo1" class="upL" src="../images/upVideo.png" alt=""></p>
+          <p class="mengProgress mengShow1"></p>
+        </div>
+
+        <p><input class="groupName1" type="text" placeholder="请输入曲目名称"></p>
+      </div> -->
+      <div class=" groupUpVideo" id="upDivVideo1" abc="1">
+        <h3>个人作品一上传<span class="editVideo editShow">更改</span></h3>
+        <div class="mengParent">
+          <p class="againUp1"><img id="upVideo1" class="upL" src="../images/upVideo.png" alt=""></p>
+          <p class="mengProgress mengShow1" style="font-size:28px;"></p>
+          <!-- <form id="myform" method="post" enctype="multipart/form-data" action="http://ss.classicalmusician.com.cn/libomo-web/web/tVideoUpload/up.do">
+
+            <input onclick="fileClickFun(1)" id="upInput1" class="upVideoInput1" type="file" accept="video/*" name="filename">
+            <button disabled class="submit1" onclick="subBtnFun(1)">上传</button>
+          </form> -->
+          <form id="myform" method="post" action="http://upload-z1.qiniu.com" enctype="multipart/form-data">
+            <input class="getTime1" name="key" type="hidden" value="">
+            <input name="x:<custom_name>" type="hidden" value="">
+            <input class="tokenUrl1" name="token" type="hidden" value="">
+            <input onclick="fileClickFun(1)" id="upInput1" class="upVideoInput1" style="margin:0;" class="upVideo" name="file" type="file" accept="video/*" value=""/>
+            <input name="accept" type="hidden" value="" />
+            <input disabled class="submit1" onclick="subBtnFun(1)" type="submit" value="上传">
+          </form>
+        </div>
+
+        <p><input class="groupName1" type="text" placeholder="请输入曲目名称"></p>
+      </div>
+      <div class=" groupUpVideo" id="upDivVideo2" abc="2">
+        <h3>个人作品一上传 <span class="editVideo2 editShow">更改</span></h3>
+        <div class="mengParent">
+          <p class="againUp2">
+            <img class="upL"  id="upVideo2" src="../images/upVideo.png" alt="">
+            <p class="mengProgress mengShow2" style="font-size:28px;"></p>
+            <!-- <form id="myform2" method="post" enctype="multipart/form-data" action="http://ss.classicalmusician.com.cn/libomo-web/web/tVideoUpload/up.do">
+
+              <input onclick="fileClickFun(2)" id="upInput2" class="upVideoInput1" type="file" accept="video/*" name="filename">
+              <button disabled class="submit2" onclick="subBtnFun(2)">上传</button>
+            </form> -->
+            <form id="myform2" method="post" action="http://upload-z1.qiniu.com" enctype="multipart/form-data">
+              <input class="getTime2" name="key" type="hidden" value="">
+              <input name="x:<custom_name>" type="hidden" value="">
+              <input class="tokenUrl2" name="token" type="hidden" value="">
+              <input onclick="fileClickFun(2)" id="upInput2" class="upVideoInput1" style="margin:0;" class="upVideo" name="file" type="file" accept="video/*" value=""/>
+              <input name="accept" type="hidden" value="" />
+              <input disabled class="submit2" onclick="subBtnFun(2)" type="submit" value="上传">
+            </form>
+          </p>
+        </div>
+        <input class="groupName2" type="text" placeholder="请输入曲目名称">
+      </div>
+      <p class="save summit" onclick="saveFun()" style="margin-top:56px;">保存</p>
+    </div>
+  </div>
+  <script src="../js/upLoadImg.js"></script>
+  <script type="text/javascript">
+     var href = location.href;
+     var hrefArr = href.split('=');
+     var id =hrefArr[1].split('&')[0];
+     var userid = hrefArr[2].split('&')[0];
+     console.log(hrefArr);
+     console.log(id,userid);
+     tokenFun(1);
+     tokenFun(2);
+    function tokenFun(i){
+      $.ajax({
+          url:httpB+'/zr/web/tWXplayer/getUpload_Token.do',
+          type:'POST',
+          success:function(data){
+            if (data.code == 0) {
+              console.log(data);
+              $('.tokenUrl'+i).val(data.data.upload_token);
+            }
+          }
+        })
+    }
+    $(function(){
+      $("#myform").ajaxForm({
+          //定义返回JSON数据，还包括xml和script格式
+          dataType:'json',
+          beforeSend: function() {
+              //表单提交前做表单验证
+          },
+          success: function(data) {
+            console.log(data);
+              //提交成功后调用
+              // var arr = data.data.url.split('/');
+              var shortUrl = '/'+data.key;
+              var url = urlB+'/'+data.key;
+              $('.mengShow1').hide();
+              $('.againUp1').html('<video class="video1" width="100%" poster="'+url+'?vframe/jpg/offset/15" abc="'+shortUrl+'" height="292px" src="'+url+'" controls=""></video>');
+              $('#upInput1').addClass('upEditInput1').removeClass('upVideoInput1');
+              $('.editVideo').show();
+              $('#myform').css('height',0);
+          }
+      });
+      $("#myform2").ajaxForm({
+          //定义返回JSON数据，还包括xml和script格式
+          dataType:'json',
+          beforeSend: function() {
+              //表单提交前做表单验证
+          },
+          success: function(data) {
+              //提交成功后调用
+              var shortUrl = '/'+data.key;
+              var url = urlB+'/'+data.key;
+              $('.mengShow2').hide();
+              $('.againUp2').html('<video class="video2" width="100%" poster="'+url+'?vframe/jpg/offset/15" abc="'+shortUrl+'" height="292px" src="'+url+'" controls=""></video>');
+              $('#upInput2').addClass('upEditInput1').removeClass('upVideoInput1');
+              $('.editVideo2').show();
+              $('#myform2').css('height',0);
+          }
+      });
+    });
+    function fileClickFun(i){
+      var date =new Date().getTime();
+      $('.getTime'+i).val(date);
+      console.log('i',i);
+      if ($('.video'+i).length>0) {
+        $('.againUp'+i).html('');
+        $('.mengShow'+i).show();
+        $('.mengShow'+i).html('已选择视频，请点击上传');
+      }
+      $('#upInput'+i).change(function(){
+        console.log(i);
+        $('.submit'+i).attr('disabled',false);
+        $('.againUp'+i).html('');
+        $('.mengShow'+i).show();
+        $('.mengShow'+i).html('已选择视频，请点击上传');
+      })
+    }
+    function subBtnFun(i){
+      $('.mengShow'+i).hide();
+      $('.againUp'+i).html('<img class="upL" src="../images/loading.gif" alt="" />');
+    }
+    // uploadQiniuNormal(upObjFun(1));
+    // uploadQiniuNormal(upObjFun(2));
+    // function upObjFun(num){
+    //   var upObj ={
+    //     clickID: 'upVideo'+num,
+    //     conID:'upDivVideo'+num,
+    //     size:'100GB',
+    //     // checkVideoOrPicture:'uploadimg',
+    //     check:{
+    //       title:'Video',
+    //       extensions:'mp4,mov,avi,wmv,flv'
+    //   };
+    //   return upObj;
+    // }
+    function saveFun(){
+      var x;
+      var data;
+        url = httpC+'/zr/player/insetSongUpload.do?';
+        data={
+          works1:$('#upDivVideo1 video').attr('abc'),
+          works2:$('#upDivVideo2 video').attr('abc'),
+          workname1:$('.groupName1').val(),
+          workname2:$('.groupName2').val(),
+          matchid:id,
+          userid:userid
+       };
+      console.log('data',data);
+      for (var x in data) {
+        console.log(x); // key
+        console.log(data[x]);//value
+        if (data[x] == undefined || data[x] == '') {
+          alert('请把信息填写完整');
+          return false;
+        }
+      }
+      saveAjax(url,data);
+    }
+  </script>
+</body>
+</html>

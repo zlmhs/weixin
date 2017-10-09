@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <link href="../css/video-js.css" rel="stylesheet">
+  <title>个人名片</title>
+</head>
+<body>
+  <div id="businessCards" class="wrap">
+    <div class="con">
+      <div class="conHeader">
+        <img src="../images/LOGO.png" alt="">
+        <a href="https://itunes.apple.com/us/app/%E9%9F%B3%E4%B9%90%E6%97%A0%E7%95%8C/id1180905106?l=zh&ls=1&mt=8#"><button class="shareBtn">打开</button></a>
+      </div>
+      <div class="cardPeople">
+
+      </div>
+      <div class="cardThree">
+        <p class="cardTitle">
+          <span class="cardClick">个人视频</span>
+          <span>英文评估</span>
+          <span>个人简历</span>
+        </p>
+        <ul class="cardTCon">
+          <li class="businessVideo cardCheck">
+            <div class="matchV">
+
+            </div>
+            <div class="personalV">
+              <div>
+                <div class="cardTu">
+                  <video id="my-video" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="690" height="310"
+                    data-setup="{}">
+                    <source src="" type="video/mp4">
+                  </video>
+                  <span>个人视频</span>
+                </div>
+                <p class="video1">
+
+                </p>
+              </div>
+              <div>
+              <div class="cardTu">
+                <video id="my-video2" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="690" height="310"
+                  data-setup="{}">
+                  <source src="" type="video/mp4">
+                </video>
+                <span>个人视频</span>
+              </div>
+              <p class="video2">
+
+              </p>
+              </div>
+            </div>
+          </li>
+          <li class="englishAssess">
+
+            <!-- <div>
+              <img src="../images/cardEng.jpg" alt="">
+              <p>
+                美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这里是什么的呀缩进
+              </p>
+            </div> -->
+          </li>
+          <li class="businessResume">
+            <h1>基本信息</h1>
+            <div class="cardInfor">
+
+            </div>
+            <h1>教育经历</h1>
+            <div class="cardEdu cardK">
+
+            </div>
+            <h1>比赛经历</h1>
+            <div class="cardMatch cardK">
+
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="englishClick">
+    <div class="englishClickC">
+        <iframe width="600" height="300" src="http://139.129.224.31:8080/ssmImage/1/1.pdf" frameborder="0"></iframe>
+    </div>
+    <span class="return">返回</span>
+  </div>
+  <script src="../js/https.js"></script>
+  <script src="http://vjs.zencdn.net/5.18.4/video.min.js"></script>
+  <script>
+  console.log('heng',window.orientation);
+  $(function(){
+    // 上面的信息
+    $.ajax({
+      url:httpD+'/userinfo/getData.do?id=1&userid=3&status=0',
+      type:'POST',
+      success:function(data){
+        if (data.code == 0) {
+          console.log(data);
+          $('.cardPeople').html('<img src="'+data.data.heading+'" alt=""><div><h1>'+data.data.nickname+'</h1><p><b class="sex">'+data.data.sex+'</b>，'+data.data.city+'</p><p>'+data.data.major+'</p><p><span><b class="gNum">'+data.data.nexusnum+'</b>关注</span><span><b class="gNum">'+data.data.fansnum+'</b>粉丝</span></p><button>关注</button>');
+        }
+        if ($('.sex').html()==1) {
+          $('.sex').html('男');
+        }else{
+          $('.sex').html('女');
+        }
+        if ($('.gNum').html() == 'null') {
+          $('.gNum').html(0);
+        }
+      }
+    })
+    console.log(location.href);
+    //个人简历
+    $.ajax({
+      url:httpD+'/userinfo/getMessageAll.do?userid=1',
+      type:'POST',
+      success:function(data){
+        if (data.code == 0) {
+          console.log(data);
+          getData(data.data);
+        }
+        $('.create').each(function(){
+          var i =$('.create').index(this);
+          var t = Number($('.create').eq(i).html());
+          $('.create').eq(i).html(getDate(t));
+        })
+        $('.end').each(function(){
+          var i =$('.end').index(this);
+          var t = Number($('.end').eq(i).html());
+           $('.end').eq(i).html(getDate(t));
+           var con = $('.end').eq(i).html().substr(5,5);
+          $('.end').eq(i).html(con);
+        })
+        if ($('.bussYear').html()!=null) {
+          $('.bussYear').html($('.bussYear').html().substr(0,10));
+        }
+      }
+    })
+    //个人视频
+    $.ajax({
+      url:httpD+'/video/findVideo.do?userid=1&pageNum=1',
+      type:'POST',
+      success:function(data){
+        if (data.code == 0) {
+          console.log('data',data);
+          getVideoData(data.data);
+        }
+        $('.matchV video').each(function(){
+          $(this).css({'width':690,'height':310});
+        })
+      }
+    })
+    //英文评估
+    $.ajax({
+      url:httpD+'/TAppraise/getTAppraise.do?userid=1',
+      type:'POST',
+      success:function(data){
+        var list = data.data.list;
+        if (data.code == 0) {
+          console.log('yingwen',data);
+          console.log(data.data.list[1].content);
+          // $('iframe').attr('src',data.data.list[1].content);
+          getEnglish(data.data);
+        }
+        $('.englishAssess div img').click(function(){
+          var i =$('.englishAssess div img').index(this);
+          console.log(list[i].content);
+          window.open(list[i].content);
+          // $('.englishClickC').html('<img class="bigET" src="'+list[i].content+'" alt="">');
+          // $('.englishClickC').html('');
+          $('.englishClick').css('display','block');
+        })
+        $('.return').click(function(){
+          $('.englishClick').css('display','none');
+        })
+      }
+    })
+
+  })
+  $('.cardTitle span').click(function(){
+    var i =$(this).index();
+    $(this).addClass('cardClick').siblings().removeClass('cardClick');
+    $('.cardTCon>li').eq(i).css('display','block').siblings().css('display','none');
+  })
+  //个人简历数据渲染
+  function getData(data){
+    var userInfo = data.userInfo;
+    $('.cardInfor').html('<p><span>最高学历：</span><span>'+userInfo.education+'</span></p><p><span>出生年份：</span><span class="bussYear">'+userInfo.year+'</span></p><p><span>所在城市：</span><span>'+userInfo.city+'</span></p><p><span>联系电话：</span><span>'+userInfo.phone+'</span></p><p><span>联系邮箱：</span><span>'+userInfo.email+'</span></p>');
+    var teach = data.teach;
+    for (var i = 0; i < teach.length; i++) {
+      var odiv = $('<div><p><span></span>'+teach[i].finishtime+'年毕业</p><p>'+teach[i].school+'</p><p>'+teach[i].major+'·'+teach[i].education+'</p></div>');
+      $('.cardEdu').append(odiv);
+    }
+    var game = data.game;
+    for (var i = 0; i < game.length; i++) {
+      var odiv = $('<div><p><span></span><b class="create">'+game[i].createtime+'</b>- <b class="end">'+game[i].endtime+'</b></p><p>'+game[i].gamename+'</p><p>'+game[i].groups+'</p><p>'+game[i].win+'</p></div>');
+      $('.cardMatch').append(odiv);
+    }
+  }
+  function getEnglish(data){
+    var list = data.list;
+    for (var i = 0; i < list.length; i++) {
+      var oli = $('<div><img style="width:334px;height:480px;" src="'+list[i].cover+'" alt=""><p>'+list[i].title+'</p></div>');
+      $('.englishAssess').append(oli);
+    }
+  }
+  // 把时间戳转化成年-月-日格式
+  function getDate(x){
+    var d = new Date(x);
+    var Y = d.getFullYear();
+    var M = d.getMonth()+1;
+    if (M<=9) {
+      M = '0'+M;
+    }else{
+      M = M;
+    }
+    var day = d.getDate();
+    if (day<=9) {
+      day = '0'+day
+    }else{
+      day = day;
+    }
+    return Y+'-'+M+'-'+day;
+  }
+  // 视频播放
+  (function(){
+      var videos = document.getElementsByTagName('video');
+      for(i=0; i<videos.length; i++) {
+          var video = videos[i];
+          if(video.className.indexOf('video-js') > -1) {
+              videojs(video.id).ready(function(){
+              });
+          }
+      }
+  })();
+  //个人视频数据渲染
+  function getVideoData(data){
+    var match = data.match.list;
+    for (var i = 0; i < match.length; i++) {
+      var odiv = $('<div><div class="cardTu"><video id="my-video" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="690" height="310" data-setup="{}"><source src="'+match[i].url+'" type="video/mp4"></video><span>比赛视频</span></div><p>'+match[i].workname+'</p></div>');
+      $('.matchV').append(odiv);
+    }
+    var person = data.personal;
+    var x = person.works1;
+    var y = person.works2;
+    videojs('my-video').src(x);
+    videojs('my-video2').src(y);
+    $('.video1').html(person.workname1);
+    $('.video2').html(person.workname2);
+    // $('.personalV').html('<div><div class="cardTu"><video id="my-video1" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="690" height="310"data-setup="{}"><source src="../images/1.mp4" type="video/mp4"></video><span>个人视频</span></div><p>'+person.workname1+'</p></div><div><div class="cardTu"><video id="my-video1" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="690" height="310"data-setup="{}"><source src="'+person.works2+'" type="video/mp4"></video><span>个人视频</span></div><p>'+person.workname2+'</p></div>');
+  }
+
+
+
+
+  // var tag=true;
+  // var myPlayer = videojs('my-video');
+  // var myPlayer2 = videojs('my-video2');
+  // videojs("my-video").ready(function(){
+  //   $('.cardTu').on('touchstart',function(){
+  //     var _this = $(this);
+  //     console.log(_this.find('video').attr('id'));
+  //     if(tag){
+  //       myPlayer.play();
+  //       _this.find('.cardTM').css('display','none');
+  //     }else{
+  //       myPlayer.pause();
+  //       _this.find('.cardTM').css('display','block');
+  //     }
+  //     tag=!tag;
+  //   })
+  // });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,801 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 999999px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+input{
+  border: none;
+  outline: none;
+}
+input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 28px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 28px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 28px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 28px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+}
+.headingConRight input:: -webkit-input-placeholder{
+  font-size: 24px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  height: 24px;
+  line-height: 24px;
+}
+.headingConRight input::-webkit-input-placeholder { /* WebKit browsers */
+  font-size: 24px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  height: 24px;
+  line-height: 24px;
+}
+.headingConRight input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  font-size: 24px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  height: 24px;
+  line-height: 24px;
+}
+.headingConRight input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  font-size: 24px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  height: 24px;
+  line-height: 24px;
+}
+.headingConRight input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  font-size: 24px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  height: 24px;
+  line-height: 24px;
+}
+.headingConRight input.headingBig::-webkit-input-placeholder{
+  font-size: 32px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  height: 32px;
+  line-height: 32px;
+}
+.header{
+  padding-top: 40px;
+  background: #fff;
+}
+.header div{
+  padding: 21px 0 20px 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+.header div{
+  overflow: hidden;
+}
+.header p img{
+  width: 26px;
+  height: 45px;
+  float: left;
+  margin:0 0 0 25px;
+}
+
+/*.header img:nth-of-type(2){
+  width: 40px;
+  height: 41px;
+  float: right;
+  margin-right: 30px;
+}*/
+/*.header p:nth-of-type(2){
+  float: right;
+  margin-right: 30px;
+  font-size: 32px;
+  color: #252525;
+}*/
+.header p{
+  width: 100%;
+  /*width: 547px;*/
+  text-align: center;
+  color: #252525;
+  height: 45px;
+  line-height: 45px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 1.5px;
+  font-size: 36px;
+}
+#matchDetail .detailH{
+  padding: 24px 0 20px;
+  background: #F6F6F6;
+}
+.detailH img{
+  width: 100%;
+  height: 340px;
+}
+.detailAbstract{
+  padding: 0 30px;
+}
+.detailAbstract h1{
+  margin: 33px 0 32px;
+  font-size: 32px;
+  color: #252525;
+  letter-spacing: 1.5px;
+  padding: 0 0 0 16px;
+  border-left: 8px solid #444444;
+  height: 32px;
+  line-height: 32px;
+}
+.detailAbstract p{
+  font-size: 32px;
+  color: #444333;
+  line-height: 56px;
+  text-align: justify;
+  text-indent: 2em;
+}
+#matchDetail .con{
+  padding-bottom: 88px;
+}
+.footer{
+  width: 100%;
+  height: 88px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  line-height: 88px;
+  overflow: hidden;
+  display: none;
+}
+.footer span{
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.footer .slideListen{
+  background: #F6F6F6;
+  color: #444444;
+}
+.footer .runMatch{
+  color: #F6F6F6;
+  background: #D53B49;
+}
+.greyBack .con{
+  background: #F6F6F6;
+  min-height: 1335px;
+}
+.matchInforThree{
+  padding: 26px 23px 0 37px;
+}
+.matchInforThree>div{
+  width: 100%;
+  height: 280px;
+  margin: 0 0 24px 0;
+  background:url('../images/Image.png') 0 0 no-repeat;
+  padding: 48px 0 0 0;
+}
+.matchInforThree>div.saveDiv{
+  width: 100%;
+  height: 82px;
+  background: none;
+  border: none;
+  margin: 0;
+  position: relative;
+}
+.mengBtn{
+  width: 100%;
+  height: 82px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+.matchInforThree>div p{
+  text-align: center;
+}
+.finishStatus{
+  /*margin: 48px 0 16px 0;*/
+  margin:0 0 16px 0;
+  font-size: 32px;
+  color: #F6F6F6;
+  letter-spacing: 1.5px;
+}
+.finishDetail{
+  font-size: 24px;
+  color: #F6F6F6;
+  letter-spacing: 1.5px;
+}
+.clickBtn{
+  width: 280px;
+  height: 64px;
+  background: #D53B49;
+  border-radius: 6px;
+  margin:48px auto 0;
+  font-size: 32px;
+  color: #F6F6F6;
+  letter-spacing: 1.5px;
+  line-height: 64px;
+}
+.summit{
+  width: 100%;
+  background: #D53B49;
+  border-radius: 6px;
+  font-size: 36px;
+  color: #F6F6F6;
+  letter-spacing: 1.69px;
+  height: 82px;
+  line-height: 82px;
+  text-align: center;
+}
+#matchInfor .summit{
+  margin: 66px auto 0;
+}
+.wrap .con{
+  padding: 30px 30px 0;
+}
+.auditHeader{
+  font-size: 32px;
+  color: #444444;
+  letter-spacing: 1.5px;
+  overflow: hidden;
+}
+.auditHeader span{
+  float: left;
+}
+.mustWrite{
+  border: 1px solid #D53B49;
+  border-radius: 8px;
+  font-size: 20px;
+  color: #D53B49;
+  line-height: 30px;
+  padding: 0 13px;
+  display: inline-block;
+  margin: 7px 0 0 16px;
+}
+.auditBasic{
+  height: 450px;
+  margin: 24px 0 30px;
+}
+.backgWhite,.groupUpVideo{
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 0px 0 0 30px;
+}
+#audit .summit{
+  margin:154px 0 0;
+}
+.backgWhite p{
+  height: 74px;
+  line-height: 74px;
+  overflow: hidden;
+}
+.auditBasic p:nth-of-type(1)~p{
+  border-top: 1px solid #F6F6F6;
+}
+.backgWhite span:nth-of-type(1){
+  float: left;
+  font-size: 28px;
+  color: #444444;
+  letter-spacing: 1.5px;
+  min-width: 166px;
+}
+.jian,.backgWhite span.jian{
+  float: right;
+  margin-right: 30px;
+  font-size: 41px;
+  color: #D8D8D8;
+}
+.backgWhite span:nth-of-type(2), .backgWhite input,.backgWhite select{
+  float: left;
+  margin: 0 0 0 14px;
+  line-height: 74px;
+  min-width: 410px;
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  height: 74px;
+}
+.backgWhite span:nth-of-type(2){
+  color: #ABABAB;
+}
+.backgWhite p.auditMoneyHeader{
+  font-size: 28px;
+  color: #444444;
+  letter-spacing: 1.5px;
+  overflow: hidden;
+  line-height: 28px;
+  height: 28px;
+  /*margin: 31px 0 23px 0;*/
+}
+.auditMoney{
+  height: 126px;
+  padding: 31px 30px 30px;
+}
+.auditMoneyHeader span{
+  float: right;
+  font-size: 24px;
+  color: #D53B49;
+}
+.backgWhite p.auditMoneyCon{
+  font-size: 20px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  margin: 16px 0 0 0;
+  height: 41px;
+  line-height: 39px;
+}
+.headerRightSpan{
+  font-size: 32px;
+  color: #444444;
+  letter-spacing: 1.5px;
+  float: right;
+  margin: 0 30px 0 0;
+}
+.matchGroupCon{
+  margin: 0 0 20px 0;
+}
+.matchGroupCon h3{
+  font-size: 32px;
+  color: #252525;
+  letter-spacing: 1.5px;
+  font-weight: normal;
+  line-height: 70px;
+}
+.enrollConInfor{
+  margin: 0 0 20px 0;
+}
+.headingCon{
+  overflow: hidden;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 30px 0 30px 30px;
+  margin: 24px 0 0 0;
+}
+.headingCon>div{
+  float: left;
+}
+.headingCon>div.headingConLeft{
+  width: 32%;
+}
+.headingCon>div.headingConLeft img{
+  width: 100%;
+  height: 254px;
+}
+.headingCon>div.headingConLeft p{
+  font-size: 22px;
+  color: #999999;
+  letter-spacing: 1px;
+  margin: 16px 0 0 0;
+}
+.headingCon>div.headingConRight{
+  width: 67%;
+  padding: 0 0 0 30px;
+}
+.headingCon>div.headingConRight input,.enrollSex,.born,.headingCon>div.headingConRight select{
+  height: 28px;
+  line-height: 28px;
+  display: block;
+  width: 100%;
+  line-height: 50px;
+  height: 50px;
+  font-size: 24px;
+  /*margin: 0 0 24px 0;*/
+}
+.enrollSex,.born{
+  color: #ABABAB;
+}
+.headingCon>div.headingConRight input.headingBig{
+  margin: 10px 0 24px 0;
+  font-size: 32px;
+  line-height: 37px;
+  height: 37px;
+}
+.payStatusCon{
+  width: 100%;
+}
+.payStatusCon img{
+  display: block;
+  width: 185px;
+  height: 130px;
+  margin: 80px auto 32px;
+}
+.payStatusCon p{
+  text-align: center;
+  font-size: 28px;
+  color: #4A4A4A;
+  letter-spacing: 1.5px;
+}
+.groupUpVideo h3{
+  padding: 30px 0;
+  font-size: 32px;
+  color: #252525;
+  letter-spacing: 1.5px;
+  font-weight: normal;
+  overflow: hidden;
+}
+.editVideo,.editVideo2{
+  float: right;
+  font-size: 28px;
+  color: #D53B49;
+  display: none;
+  height: 42px;
+  margin: 0 100px 0 0;
+  width: 100px;
+}
+.groupUpVideo{
+  padding-right: 30px;
+  margin: 0 0 20px 0;
+}
+.groupUpVideo input{
+  font-size: 28px;
+  margin: 30px 0;
+}
+.upL{
+  display: block;
+  width: 100%;
+  height: 292px;
+}
+#bornDate,#sex,select{
+  font-size: 28px;
+  color: #ABABAB;
+  letter-spacing: 1.5px;
+  margin: 0 0 0 14px;
+  min-width: 400px;
+  display: inline-block;
+}
+.clickDiv{
+  bottom: 0;
+  left: 0;
+  position: absolute;;
+  width: 100%;
+  height: 512px;
+  background: #FFFFFF;
+  z-index: 100;
+  opacity: 1;
+}
+.meng{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.mengDiv{
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background: #000000;
+}
+.clickStatus{
+  width: 100%;
+  padding: 38px 30px 0;
+  overflow: hidden;
+}
+.clickStatus .cancel{
+  font-size: 32px;
+  color: #ABABAB;
+  letter-spacing: 0.71px;
+  cursor: pointer;
+  float: left;
+}
+.clickStatus .confirm{
+  font-size: 32px;
+  color: #D53B49;
+  letter-spacing: 0.71px;
+  cursor: pointer;
+  float: right;
+}
+.clickCon{
+  margin: 184px 0 0 0;
+  height: 300px;
+  overflow-y: auto;
+}
+.showLi{
+  width: 100%;
+  height: 72px;
+  line-height: 72px;
+  position: absolute;
+  left: 0;
+  top:260px;
+  border-top: 1px solid #979797;
+  border-bottom: 1px solid #979797;
+  opacity: 1;
+}
+.clickCon li:nth-of-type(1){
+  border-top: 1px solid #979797;
+}
+.clickCon li{
+  height: 72px;
+  line-height: 72px;
+  font-size: 42px;
+  color: #444444;
+  letter-spacing: 0.94px;
+  text-align: center;
+  border-bottom: 1px solid #979797;
+}
+.dropP{
+  position: relative;
+}
+select{
+  opacity: 0;
+  position: absolute;
+  left: 166px;
+  top: 0;
+  z-index: 100;
+}
+select option{
+  font-size: 60px;
+}
+.modalOwn{
+  height: 40px;
+  width: 200px;
+  position: fixed;
+  line-height: 40px;
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -100px;
+  background: pink;
+  color: #fff;
+  display: none;
+  opacity: 0.9;
+  background: #242424;
+  border-radius: 4px;
+  font-size: 22px;
+  color: #FDFDFD;
+  text-align: center;
+}
+.modalEnroll {
+  width: 60%;
+  height: 50px;
+  line-height: 50px;
+  opacity: 0.9;
+  background: #242424;
+  border-radius: 13px;
+  font-size: 25px;
+  color: #FDFDFD;
+  text-align: center;
+  position: fixed;
+  left: 20%;
+  bottom:27%;
+  display: none;
+}
+.progress{
+  display: none;
+  height: 40px;
+  line-height: 40px;
+}
+.mengParent{
+  position: relative;
+}
+.mengProgress{
+  width: 100%;
+  height: 292px;
+  background: #000;
+  opacity: 0.4;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  line-height: 292px;
+  display: none;
+}
+.againUp2,.againUp1{
+  height: 292px;
+}
+form{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.groupUpVideo input.upVideoInput1{
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0;
+  opacity: 0;
+}
+.groupUpVideo input.upEditInput1{
+  position: absolute;
+  right: 100px;
+  top: -70px;
+  background: none;
+  border:none;
+  outline: none;
+  font-size: 28px;
+  width: 100px;
+  margin: 0;
+  opacity: 0;
+
+}
+.submit1,.submit2{
+  position: absolute;
+  right: 0;
+  top: -104px;
+  background: none;
+  border:none;
+  outline: none;
+  font-size: 28px;
+}
+.submit3{
+  position: absolute;
+  right: -79px;
+  bottom:-73px;
+  background: none;
+  border:none;
+  outline: none;
+  font-size: 28px;
+  color: #3c3c3c;
+}
+#upDiv,#upDiv2{
+  position: relative;
+}
+#myform3,#myform4{
+  width: 100%;
+  height: 254px;
+}
+input[type = "file"]{
+  width: 100%;
+  height: 100%;
+    opacity: 0;
+}
+.headingCon>div.headingConLeft p.mengImg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 254px;
+  margin: 0;
+  text-align: center;
+  padding: 104px 0 0 0;
+  text-align: center;
+  display: none;
+}
+.enrollInforDiv{
+  position: relative;
+  height: 82px;
+}
+.paySucess{
+  width: 100%;
+  min-height: 1334px;
+  background: #F6F6F6;
+  padding: 32px 32px 150px;
+}
+.paySucess .con{
+  padding: 33px 32px 0;
+  width: 100%;
+  height: 1021px;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,0.10);
+}
+.payFooter{
+  position: fixed;
+  padding: 16px 56px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+}
+.downApp{
+  background-image: linear-gradient(20deg, #EE2D4A 0%, #FD415D 100%);
+  box-shadow: 0 2px 8px 0 rgba(242,50,79,0.30);
+  border-radius: 28px;
+  font-size: 24px;
+  color: #F6F6F6;
+  text-align: center;
+  width: 140px;
+  height: 56px;
+  float: right;
+  line-height: 56px;
+  margin: 16px 0 0 0;
+}
+.matchDHead{
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 16px 56px;
+  width: 100%;
+  height: 120px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+
+}
+.payConTop{
+  padding: 39px 28px 0;
+}
+.payBigT{
+  width: 100%;
+  height: 282px;
+}
+.payConTop{
+  width: 100%;
+}
+.payConTop img{
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
+  display: block;
+}
+.paySucessP{
+  font-size: 40px;
+  color: #444444;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 24px 0 16px;
+  height: 56px;
+  line-height: 56px;
+}
+.payShortTop{
+  font-size: 28px;
+  color: #666666;
+  letter-spacing: 0.88px;
+  line-height: 48px;
+  text-align: center;
+}
+.payAlertDiv{
+  width: 100%;
+  padding: 0 70px;
+}
+.payAlert{
+  border: 1px solid #F6A623;
+  border-radius: 2px;
+  font-size: 24px;
+  color: #F6A623;
+  letter-spacing: 1.09px;
+  display: block;
+  width: 72px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto 26px;
+  text-align: center;
+}
+.payAlertP{
+  font-size: 28px;
+  color: #999999;
+  letter-spacing: 1px;
+  line-height: 40px;
+  text-align: center;
+}
+.payConLine{
+  width: 100%;
+  padding: 0 76px;
+  position: relative;
+}
+.centerLine{
+  margin: 90px 0 80px;
+  width: 100%;
+  border-bottom: 4px dashed #F1F1F1;
+}
+.payConLine span{
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background:  #F6F6F6;
+}
+.payConLine span.leftBan{
+  left:-48px;
+  top: -13px;
+}
+.payConLine span.rightBan{
+  right:-48px;
+  top: -13px;
+}

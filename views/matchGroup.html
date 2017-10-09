@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/autoAdapt.js"></script>
+  <script src="../js/jquery.js"></script>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <!-- <script src="/device/js/ort.js"></script> -->
+  <link rel="stylesheet" href="../css/weixin.css">
+  <title>参赛曲目</title>
+</head>
+<body>
+
+  <div id="matchGroup" class="wrap greyBack">
+    <!-- <div class="header">
+      <div>
+        <p>参赛曲目 <img onclick="window.history.go(-1)" src="/device/images/return.jpg" alt=""><span class ="titleSave headerRightSpan">保存</span></p>
+      </div>
+    </div> -->
+    <div class="con">
+      <div class="matchGroupCon backgWhite">
+        <h3>现场初赛作品一</h3>
+        <p><span>曲目名称</span><input class="songname1" type="text" placeholder="请输入曲目名称"></p>
+        <p><span>作者</span><input class="author1" type="text" placeholder="请输入曲目作者"></p>
+        <p><span>选自</span><input class="source1" type="text" placeholder="请输入曲目选自哪首作品"></p>
+      </div>
+      <div class="matchGroupCon backgWhite">
+        <h3>现场初赛作品二</h3>
+        <p><span>曲目名称</span><input class="songname2" type="text" placeholder="请输入曲目名称"></p>
+        <p><span>作者</span><input class="author2" type="text" placeholder="请输入曲目作者"></p>
+        <p><span>选自</span><input class="source2" type="text" placeholder="请输入曲目选自哪首作品"></p>
+      </div>
+      <div class="matchGroupCon backgWhite">
+        <h3>现场决赛作品</h3>
+        <p><span>曲目名称</span><input class="songname3" type="text" placeholder="请输入曲目名称"></p>
+        <p><span>作者</span><input class="author3" type="text" placeholder="请输入曲目作者"></p>
+        <p><span>选自</span><input class="source3" type="text" placeholder="请输入曲目选自哪首作品"></p>
+      </div>
+        <p class="save summit" onclick="saveFun()" style="margin-top:56px;">保存</p>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var href = location.href;
+    var hrefArr = href.split('=');
+    var id =hrefArr[1].split('&')[0];
+    var userid = hrefArr[2].split('&')[0];
+    console.log(hrefArr);
+    console.log(id,userid);
+    $(function(){
+
+    })
+    function saveFun(){
+      var x;
+      var data;
+        url = httpC+'/zr/player/insertSong.do?';
+        data={
+          songname1:$('.songname1').val(),
+          author1:$('.author1').val(),
+          source1:$('.source1').val(),
+          songname2:$('.songname2').val(),
+          author2:$('.author2').val(),
+          source2:$('.source2').val(),
+          songname3:$('.songname3').val(),
+          author3:$('.author3').val(),
+          source3:$('.source3').val(),
+          matchid:id,
+          userid:userid
+       };
+       console.log('data',data);
+      for (var x in data) {
+        console.log(x); // key
+        console.log(data[x]);//value
+        if (data[x] == undefined || data[x] == '') {
+          alert('请把信息填写完整');
+          return false;
+        }
+      }
+      saveAjax(url,data);
+
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+@-webkit-keyframes anmite {
+  0% {background: #9f9f9f;}
+  100% {background: #e1e2e4;}
+}
+@keyframes anmite {
+  0% {background: #9f9f9f;}
+  100% {background: #e1e2e4;}
+}
+#cover{width: 100%;height: 100%;position: absolute;z-index: 888;background: #fff;}
+#cover div{width: 20px;height: 20px;border-radius: 50%;position: absolute;top: 40%;background: #eee;}
+#cover div:nth-of-type(1){left: 38%;-webkit-animation: anmite 0.3s linear 0s infinite alternate;animation: anmite 0.3s linear 0s infinite alternate;}
+#cover div:nth-of-type(2){left: 46%;-webkit-animation: anmite 0.3s linear 0.1s infinite alternate;animation: anmite 0.3s linear 0.1s infinite alternate;}
+#cover div:nth-of-type(3){left: 54%;-webkit-animation: anmite 0.3s linear 0.2s infinite alternate;animation: anmite 0.3s linear 0.2s infinite alternate;}
+#cover div:nth-of-type(4){left: 62%;-webkit-animation: anmite 0.3s linear 0.3s infinite alternate;animation: anmite 0.3s linear 0.3s infinite alternate;}

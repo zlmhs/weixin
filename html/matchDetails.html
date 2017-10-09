@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <title>赛事详情</title>
+</head>
+<body>
+  <div id="matchDetails" class="wrap">
+    <!-- <div class="header">
+      <div>
+        <img onclick="window.history.go(-1)" src="../images/bReturn.png" alt="">
+        <p>赛事详情</p>
+      </div>
+    </div> -->
+    <div class="con">
+      <div class="conHeader">
+        <img src="../images/LOGO.png" alt="">
+        <button class="shareBtn">打开</button>
+      </div>
+      <div class="detailH">
+
+      </div>
+      <div class="detailAbstract">
+        <h1>赛事简介</h1>
+        <span class="slideDW">展开</span>
+        <iframe style="width:690px;height:400px;" src="" frameborder="0"></iframe>
+      </div>
+      <div class="detailPeople">
+        <h1>评委会成员</h1>
+        <ul class="listD">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="../js/https.js"></script>
+  <script>
+    $(function(){
+    	var id,userid;
+        var href = location.href;
+        console.log(href);
+        arr = href.split('?')[1].split('&');
+        id = arr[0].split('=')[1];
+        userid = arr[1].split('=')[1];
+      $.ajax({
+        url:httpD+'detail/selectById.do?id='+id+'&userid='+userid,
+        type:'POST',
+        success:function(data){
+          var data = eval('('+data+')');
+          if (data.code == 0) {
+            console.log(data);
+            getData(data);
+            console.log(data.detail.introduce);
+          }
+          var x=$('.statusD').html();
+          type(x);
+          var he = $('.detailAbstract').height()+100;
+          console.log(he);
+          if ($('.detailAbstract').height()>500) {
+            $('.detailAbstract').height(500);
+            $('.slideDW').css('display','block');
+          }
+          $('.slideDW').click(function(){
+            $('.detailAbstract').animate({height:he});
+            $('.slideDW').css('display','none');
+          })
+          $('.detailAbstract #editor').css('width','680px');
+        }
+      })
+      console.log(location.href);
+    })
+    function getData(data){
+      var detail = data.detail;
+      $('.detailH').html('<img src="'+detail.image+'" alt=""><span class="statusD">'+detail.status+'</span><div class="detailDiv"><img src="'+detail.icon+'" alt=""><div><p>'+detail.intro+'</p><p><span>报名时间：'+detail.createtime+'-'+detail.endtime+'</span><span>已有<b>'+detail.number+'</b>人报名</span></p><p>主办方：'+detail.sponsor+'</p></div></div>');
+      $('.detailAbstract iframe').attr('src',detail.introduce);
+      var list = data.list;
+      for (var i = 0; i < list.length; i++) {
+        var oli =$('<li><img src="'+list[i].heading+'" alt=""><p>'+list[i].name+'</p><p>'+list[i].school+'</p></li>');
+        $('.listD').append(oli);
+      }
+    }
+    function type(x){
+      var obj={
+        "1":"正在报名",
+        "2":"正在进行",
+        "3":"已经结束"
+      }
+      $('.statusD').html(obj[x]);
+    }
+
+  </script>
+</body>
+</html>

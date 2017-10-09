@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/autoAdapt.js"></script>
+  <script src="../js/jquery.js"></script>
+  <!-- <script src="../js/ort.js"></script> -->
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <link href="../css/video-js.css" rel="stylesheet">
+  <title>音乐无界</title>
+</head>
+<body>
+  <div id="newShare" class="wrap">
+    <!-- <div class="header">
+      <div>
+        <img onclick="window.history.go(-1)" src="../images/bReturn.png" alt="">
+        <p>音乐无界</p>
+      </div>
+    </div> -->
+    <div class="con">
+      <div class="conHeader">
+        <img src="../images/LOGO.png" alt="">
+        <a class="Andro" href="#"><button class="shareBtn">打开</button></a>
+        <!-- <a class="Ios" href="#"><button class="shareBtn">打开</button></a> -->
+      </div>
+      <div class="conTitle">
+
+      </div>
+      <div class="slideCon">
+        <p class="slideVideo">
+          <!-- <video id="my-video" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="690" height="341" data-setup="{}" ><source src="" type="video/mp4"></video> -->
+        </p>
+        <p class="videoS">
+
+        </p>
+<!--
+        <p class="slideImg">
+
+        </p> -->
+      </div>
+      <div class="recommend">
+        <h1>相关推荐</h1>
+        <ul class="newsReco">
+
+        </ul>
+      </div>
+      <div class="comment">
+        <h1>评论</h1>
+        <ul class="newsCommt">
+
+        </ul>
+      </div>
+      <!-- <div class="footer">
+        <input class="ipt" type="text" placeholder="有何高见...">
+        <img style="width:44px;height:40px;" src="../images/comment.png" alt="">
+      </div> -->
+    </div>
+  </div>
+  <script src="../js/https.js"></script>
+  <script src="http://vjs.zencdn.net/5.18.4/video.min.js"></script>
+  <script>
+    $(function(){
+      var newsid,type;
+      var href = location.href;
+      console.log(href);
+      arr = href.split('?')[1].split('&');
+      newsid = arr[0].split('=')[1];
+      typeId = arr[1].split('=')[1];
+      $.ajax({
+         url:httpD+'/news/newsdetail.do?newsid='+newsid+'&type='+typeId,
+        //url:'http://192.168.0.222:8080/zr/news/newsdetail.do?',
+        type:'POST',
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            getData(data.data);
+          }
+          var x = Number($('.newTy').html());
+          $('.newTy').html(typeFun(x));
+          var y = Number($('.liDivBtn').html());
+          $('.liDivBtn').html(typeFun(y));
+          $('.newsDate').each(function(){
+              var i = $('.newsDate').index(this);
+              var arr = $(this).html().split('/');
+              var time1 = new Date(getDate(Number(arr[0])).replace(/-/g,'/'));
+              var time2 = new Date(getDate(Number(arr[1])).replace(/-/g,'/'));
+              var clip = getTime(Number(arr[1]));
+              console.log(clip);
+              if(time1.setHours(24,0,0,0) >time2.setHours(24,0,0,0)){
+                $('.newsDate').eq(i).html(clip);
+              }else{
+                $('.newsDate').eq(i).html('今天 '+clip.substr(clip.length-5,5));
+              }
+          })
+          // $('#editor').css({'width':650});
+          $('#editor p span').css({'fontSize':'14px','lineHeight':'10px'});
+        }
+      })
+      $.ajax({
+        url:'http://192.168.0.222:8080/zr/tComment/selectComments.do?',
+        type:'POST',
+        // data:{'style':1,'pageNum':1,'newsid':1},
+        data:{'style':1,'pageNum':1,'othersid':newsid},
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            getComment(data.data);
+          }
+          $('.newsDate2').each(function(){
+              var i = $('.newsDate2').index(this);
+              var arr = $(this).html().split('/');
+              var time1 = new Date(getDate(Number(arr[0])));
+              var time2 = new Date(getDate(Number(arr[1])));
+              var clip = getTime(Number(arr[1]));
+              if(time1.setHours(24,0,0,0) >time2.setHours(24,0,0,0)){
+                $('.newsDate2').eq(i).html(clip);
+              }else{
+                $('.newsDate2').eq(i).html('今天 '+clip.substr(clip.length-5,5));
+              }
+          })
+          $('.commentHead').each(function(){
+            var i = $('.commentHead').index(this);
+            if ($(this).attr('src') == 'null') {
+              $('.commentHead').eq(i).attr('src','../images/newHead.png');
+            }
+          })
+        }
+      })
+    })
+    function getData(data){
+      var news = data.news;
+      $('.conTitle').html('<p style="text-indent:0;">'+news.title+'</p><p><span class="newTy">'+news.type+'</span><span>'+news.commentnumb+'评论</span><span class="newsDate">'+news.currenttime+'/'+news.uploadtime+'</span></p>');
+      var newsRe = data.newsRecommend;
+      if (newsRe.length>0) {
+        for (var i = 0; i < newsRe.length; i++) {
+          var oli = $('<li><div class="liDiv"><p style="text-indent:0;font-size:28px;">'+newsRe[i].Recommend.title+'</p><p style="text-indent:0;"><span class="liDivBtn">'+newsRe[i].Recommend.type+'</span><span>'+newsRe[i].Recommend.commentnumb+'评论</span><span class="newsDate">'+newsRe[i].Recommend.currenttime+'/'+newsRe[i].Recommend.uploadtime+'</span></p></div><img style="width:236px;height:150px;" class="newsRecom" src="'+newsRe[i].imgs[0].url+'" alt=""></li>');
+          $('.newsReco').append(oli);
+        }
+      } else {
+        $('.newsReco').html('<li style="padding:0 0 0 20px;font-size:30px;">暂无推荐</li>');
+      }
+      var img = data.imgs;
+      for (var i = 0; i < img.length; i++) {
+        var img = $('<img src="'+img[i].url+'" alt="">');
+        $('.slideImg').append(img);
+      }
+      var video = data.video;
+      // if (video.length>0) {
+      //   var x = video[0].url;
+      //   videojs('my-video').src(x);
+      // }else{
+      //   $('.slideVideo').html('');
+      // }
+      $('.videoS').html(news.content);
+    }
+    function getComment(data){
+      var list = data.list;
+      if (list.length>0) {
+        for (var i = 0; i < list.length; i++) {
+          var oli = $('<li><img class="commentHead" src="'+list[i].heading+'" alt=""><div class="commentCon"><p>'+list[i].nickname+'</p><p class="newsDate2">'+list[i].currenttime+'/'+list[i].createtime+'</p><p>'+list[i].comment+'</p></div></li>');
+          $('.newsCommt').append(oli);
+        }
+      }else{
+        $('.newsCommt').html('<p style="padding:0 0 0 20px;font-size:30px;">暂无评论</p>');
+      }
+    }
+    function getDate(x){
+      var d = new Date(x);
+      var Y = d.getFullYear();
+      var M = d.getMonth()+1;
+      var day = d.getDate();
+      return Y+'/'+M+'/'+day;
+    }
+    function getTime(x){
+      var d = new Date(x);
+      var Y = d.getFullYear();
+      var M = d.getMonth()+1;
+      if (M<=9) {
+        M = '0'+M;
+      }else{
+        M = M;
+      }
+      var day = d.getDate();
+      if (day<=9) {
+        day = '0'+day
+      }else{
+        day = day;
+      }
+      var hour = d.getHours();
+      if (hour<10) {
+        hour = '0' + hour;
+      }else{
+        hour = hour ;
+      }
+      var min = d.getMinutes();
+      if (min<10) {
+        min = '0' + min;
+      } else {
+        min = min;
+      }
+      return Y+'-'+M+'-'+day+'  '+hour+':'+min;
+    }
+    function typeFun(x){
+      var obj={
+        "1000":"美声",
+        "1001":"音乐剧",
+        "1002":"民歌",
+        "1003":"民乐",
+        "1004":"戏曲",
+        "1005":"合唱",
+        "1006":"钢琴",
+        "1007":"吉他",
+        "1008":"弦乐",
+        "1009":"木管",
+        "1010":"钢管",
+        "1011":"打击乐",
+        "1012":"交响乐",
+        "1013":"舞蹈",
+        "1014":"流行",
+        "1015":"芭蕾"
+      };
+      return obj[x];
+      // $('.newTy').html(obj[x]);
+    }
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isAndroid) {
+      console.log('Android');
+    }else{
+      console.log('isiOS');
+    }
+    // https://itunes.apple.com/us/app/%E9%9F%B3%E4%B9%90%E6%97%A0%E7%95%8C/id1180905106?l=zh&ls=1&mt=8#
+  </script>
+</body>
+</html>

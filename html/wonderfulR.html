@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <link href="../css/video-js.css" rel="stylesheet">
+  <title>精彩回顾</title>
+</head>
+<body>
+  <div id="wonderfulR" class="wrap">
+    <!-- <div class="header">
+      <div>
+        <img onclick="window.history.go(-1)" src="../images/bReturn.png" alt="">
+        <p>精彩回顾</p>
+      </div>
+    </div> -->
+    <div class="con">
+      <div class="conHeader">
+        <img src="../images/LOGO.png" alt="">
+        <button class="shareBtn">打开</button>
+      </div>
+      <div class="wonderTi">
+        <p class="slideImg" id="rVideo">
+          <video id="my-video" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="750" height="341" data-setup="{}" ><source src="" type="video/mp4"></video>
+        </p>
+        <div class="videoS">
+
+        </div>
+      </div>
+      <div class="recommend">
+        <h1>相关推荐</h1>
+        <ul class="wonderList">
+
+        </ul>
+      </div>
+      <div class="comment">
+        <h1>评论</h1>
+        <ul class="commentD">
+
+        </ul>
+      </div>
+      <div class="footer">
+        <input class="ipt" type="text" placeholder="有何高见...">
+        <img src="../images/comment.png" alt="">
+      </div>
+    </div>
+  </div>
+  <script src="../js/https.js"></script>
+    <script src="http://vjs.zencdn.net/5.18.4/video.min.js"></script>
+  <script>
+    $(function(){
+      $.ajax({
+        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1001&userid=1',
+        type:'POST',
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            var data = data.data;
+            $('.videoS').html('<p class="wonderP">'+data.Title+'</p><p class="wonderA"><span class="liDivBtn">'+data.Type+'</span><span>'+data.Commentnum+'评论</span><span>'+data.Playnum+'播放</span><span class="tTime">'+data.Distancetime+'</span></p>');
+            var x = data.Url;
+             videojs('my-video').src(x);
+            getData(data.recommendList);
+          }
+          $('.liDivBtn').each(function(){
+            var i = $('.liDivBtn').index(this);
+            console.log(i);
+            var x = $(this).html();
+            typeFun(i,x);
+          })
+
+        }
+      })
+      //评论接口
+      $.ajax({
+        url:httpD+'/tComment/selectComments.do',
+        type:'POST',
+        // data:{"style":2,"reviewid":1},
+        data:{"style":2,"othersid":1},
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            var data = data.data;
+            getCommentData(data);
+
+          }
+          $('.commentHead').each(function(){
+            var i = $('.commentHead').index(this);
+            console.log($(this).attr('src') == 'null');
+            if ($(this).attr('src') == 'null') {
+              $('.commentHead').eq(i).attr('src','../images/newHead.png');
+            }
+          })
+          $('.newsDate2').each(function(){
+              var i = $('.newsDate2').index(this);
+              var arr = $(this).html().split('/');
+              var time1 = new Date(getDate(Number(arr[0])));
+              var time2 = new Date(getDate(Number(arr[1])));
+              var clip = getTime(Number(arr[1]));
+              if(time1.setHours(24,0,0,0) >time2.setHours(24,0,0,0)){
+                console.log('昨天');
+                $('.newsDate2').eq(i).html(clip);
+              }else{
+                $('.newsDate2').eq(i).html('今天 '+clip.substr(clip.length-5,5));
+              }
+          })
+        }
+      })
+      console.log(location.href);
+    })
+    //音乐类型
+    function typeFun(i,x){
+      var obj={
+        "1000":"美声",
+        "1001":"音乐剧",
+        "1002":"民歌",
+        "1003":"民乐",
+        "1004":"戏曲",
+        "1005":"合唱",
+        "1006":"钢琴",
+        "1007":"吉他",
+        "1008":"弦乐",
+        "1009":"木管",
+        "1010":"钢管",
+        "1011":"打击乐",
+        "1012":"交响乐",
+        "1013":"舞蹈",
+        "1014":"流行",
+        "1015":"芭蕾"
+      }
+      $('.liDivBtn').eq(i).html(obj[x]);
+    }
+    //相关推荐数据渲染
+    function getData(data){
+      if (data.length>0) {
+        for (var i = 0; i < data.length; i++) {
+          // var li = $('<li><img src="'+data[i].img+'" alt=""><div class="liDiv"><p>'+data[i].title+'</p><p><span class="liDivBtn">'+data[i].type+'</span><span>'+data[i].commentnum+'评论</span><span><b class="newsDate1">'+data[i].currenttime+'/'+data[i].distancetime+'</b></span></p></div><img class="play" src="../images/play.png" alt=""></li>');
+           var li = $('<li><img src="'+data[i].img+'" alt=""><div class="liDiv"><p>'+data[i].title+'</p><p><span class="liDivBtn">'+data[i].type+'</span><span>'+data[i].commentnum+'评论</span><span><b class="newsDate1">'+data[i].currenttime+'/'+data[i].distancetime+'</b></span></p></div></li>');
+          $('.wonderList').append(li);
+        }
+      } else {
+        $('.wonderList').html('<li style="padding:0 0 0 20px;font-size:30px;">暂无推荐</li>');
+      }
+    }
+    //评论数据渲染
+    function getCommentData(data){
+      var list = data.list;
+      if (list.length>0) {
+        for (var i = 0; i < list.length; i++) {
+          var oli = $('<li><img class="commentHead" src="'+list[i].heading+'" alt=""><div class="commentCon"><p>'+list[i].nickname+'</p><p class="newsDate2">'+list[i].currenttime+'/'+list[i].createtime+'</p><p>'+list[i].comment+'</p></div></li>');
+          $('.commentD').append(oli);
+        }
+      } else {
+          $('.commentD').html('<li style="padding:0 0 0 20px;font-size:30px;">暂无评论</li>');
+      }
+    }
+    //把时间戳转化为年-月-日
+    function getDate(x){
+      var d = new Date(x);
+      var Y = d.getFullYear();
+      var M = d.getMonth()+1;
+      if (M<=9) {
+        M = '0'+M;
+      }else{
+        M = M;
+      }
+      var day = d.getDate();
+      if (day<=9) {
+        day = '0'+day
+      }else{
+        day = day;
+      }
+      return Y+'-'+M+'-'+day;
+    }
+    //把时间戳转化为详细的时间
+    function getTime(x){
+      var d = new Date(x);
+      var Y = d.getFullYear();
+      var M = d.getMonth()+1;
+      if (M<=9) {
+        M = '0'+M;
+      }else{
+        M = M;
+      }
+      var day = d.getDate();
+      if (day<=9) {
+        day = '0'+day
+      }else{
+        day = day;
+      }
+      var hour = d.getHours();
+      if (hour<10) {
+        hour = '0' + hour;
+      }else{
+        hour = hour ;
+      }
+      var min = d.getMinutes();
+      if (min<10) {
+        min = '0' + min;
+      } else {
+        min = min;
+      }
+      return Y+'-'+M+'-'+day+'  '+hour+':'+min;
+    }
+
+  </script>
+</body>
+</html>

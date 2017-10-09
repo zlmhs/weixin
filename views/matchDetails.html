@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/autoAdapt.js"></script>
+  <script src="../js/jquery.js"></script>
+  <script src="../js/https.js"></script>
+  <!-- <script src="../js/ort.js"></script> -->
+  <link rel="stylesheet" href="../css/weixin.css">
+  <title>赛事详情</title>
+</head>
+<body>
+  <div id="matchDetail">
+    <div class="matchDHead">
+      <img class="footerTu" src="../images/logo_top.png" alt="">
+      <span class="downApp">下载</span>
+    </div>
+    <div class="con" style="margin-top:120px;">
+      <div class="detailH">
+        <img class="banner" src="" alt="">
+      </div>
+      <div class="detailAbstract">
+        <h1>赛事简介</h1>
+        <p class="matchDetailP">
+          <!-- 瑞典斯德哥尔摩当地时间2016年10月13日下午1点，瑞典学院将2016年度诺贝尔文学奖颁给了75岁的美国音乐家鲍勃·迪伦。今年的奖金为800万瑞典克朗，折合约610万元人民币、90万美元。敲，敲，鲍勃·迪伦终于敲开了诺贝尔的瑞典斯德哥尔摩当地时间2016年10月13日下午1点，瑞典学院将2016年度诺贝尔文学奖颁给了75岁的美国音乐家鲍勃·迪伦。今年的奖金为800万瑞典克朗，折合约610万元人民币、90万美元。
+          瑞典斯德哥尔摩当地时间2016年10月13日下午1点，瑞典学院将2016年度诺贝尔文学奖颁给了75岁的美国音乐家鲍勃·迪伦。今年的奖金为800万瑞典克朗，折合约610万元人民币、90万美元。敲，敲，鲍勃·迪伦终于敲开了诺贝尔的瑞典斯德哥尔摩当地时间2016年10月13日下午1点，瑞典学院将2016年度诺贝尔文学奖颁给了75岁的美国音乐家鲍勃·迪伦。今年的奖金为800万瑞典克朗，折合约610万元人民币、90万美元。 -->
+        </p>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="slideListen" onclick="auditOrMatch(1)">我要旁听（¥1000）</span>
+      <span class="runMatch" onclick="auditOrMatch(2)">我要参赛（¥2000）</span>
+    </div>
+  </div>
+  <script>
+    var href = location.href;
+    //alert(href);
+    console.log(href);
+    var hrefArr = href.split('=');
+    var id = hrefArr[1].split('&')[0];
+    var userid = hrefArr[2];
+    var genre;
+    editData(id,userid);
+  function editData(matchid,userids){
+    $.ajax({
+      url: httpC+'/zr/detail/selectById.do?id='+matchid+'&userid='+userids,
+      type: 'POST',
+      success: function(data) {
+        var data = eval('('+data+')');
+        if(data.code==0){
+          console.log(data);
+          genre = data.detail.genre;
+          if (data.detail.status == '1') {
+            if (data.detail.genre != '1') {
+              $('.footer').show();
+            }
+          }
+          detail(data);
+        }else{
+          alert(data.msg);
+        }
+      }
+    });
+  }
+  function detail(data){
+    $('.banner').attr('src',data.detail.image);
+    $('.matchDetailP').html(data.detail.introduce1);
+    $('.slideListen').html('我要旁听（¥'+data.detail.auditprice+'）');
+    $('.slideListen').attr('abc',data.detail.auditprice);
+    $('.runMatch').attr('abc',data.detail.entryprice);
+    $('.runMatch').attr('ty',data.detail.type);
+    $('.runMatch').html('我要参赛（¥'+data.detail.entryprice+'）');
+  }
+  function auditOrMatch(num){
+    if (num == 1) {
+      var num = $('.slideListen').attr('abc');
+      location.href='audit.html?id='+id+'&userid='+userid+'&money='+num+'&genre='+genre;
+    }else{
+      var num2 = $('.runMatch').attr('abc');
+      var type = $('.runMatch').attr('ty');
+      location.href='matchInfor.html?id='+id+'&userid='+userid+'&money='+num2+'&type='+type+'&genre='+genre;
+    }
+  }
+  </script>
+</body>
+</html>
