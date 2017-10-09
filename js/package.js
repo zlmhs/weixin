@@ -88,3 +88,17 @@ function saveAjax(url,data){
     }
   });
 }
+function downLoadAppFun(){
+  var u = navigator.userAgent;
+  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  if (isAndroid) {
+    console.log('android');
+      // android的跳转市场的链接
+      // location.href='';
+  }else{
+    console.log('Ios');
+      // Ios跳转市场的链接
+      // location.href=''; 
+  }
+}

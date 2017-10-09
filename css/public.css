@@ -3,6 +3,7 @@
   padding: 0;
   list-style: none;
   max-height: 999999px;
+  box-sizing: border-box;
 }
 .header{
   padding-top: 40px;

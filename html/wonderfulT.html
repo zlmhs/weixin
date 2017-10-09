@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <title>精彩图集</title>
+</head>
+<body>
+  <div id="wonderfulR" class="wrap wonderFulTCon">
+    <div class="con">
+        <img class="wonderfulImg" src="../images/busbg.png" alt="">
+        <div class="wonderfulDetail">
+            <div class="wonderfulTMeng"></div>
+            <div class="wonderfulTMengSlide">
+                美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这是个占位符
+            </div>
+        </div>
+    </div>
+    <div class="payFooter">
+        <img class="footerTu" src="../images/logo_top.png" alt="">
+        <p class="downApp">
+            <span class="downAppSpan"></span>
+            <span class="downAppCon" onclick="downLoadAppFun()">前往下载</span>
+        </p>
+    </div>
+  </div>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <script>
+    console.log($('.wonderfulTMengSlide').height());
+    var h = $('.wonderfulTMengSlide').height();
+    $('.wonderfulTMengSlide').css('margin-top',-h/2);
+    $(function(){
+      $.ajax({
+        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1001&userid=1',
+        type:'POST',
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            var data = data.data;
+            }
+        }
+      })
+      console.log(location.href);
+    })
+
+  </script>
+</body>
+</html>
