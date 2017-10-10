@@ -15,23 +15,17 @@
   <div id="juryCardAbstarct" class="wrap">
     <div class="con">
         <div class="newJuryHead">
-            <img src="../images/head.png" alt="">
-            <div>
-                <h1>罗伯特·斯文森</h1>
-                <p class="newJuryS"><span>女高音</span> <span>巴德隆基大学</span></p>
-                <p><span class="newJuryNum">18</span> <span>关注</span><span class="newJuryNum">6800</span> <span>粉丝</span></p>
-                <p class="newJuryG">关注</p>
-            </div>
+            <!-- <img src="../images/head.png" alt=""> <div><h1>罗伯特·斯文森</h1><p class="newJuryS"><span>女高音</span> <span>巴德隆基大学</span></p><p><span class="newJuryNum">18</span> <span>关注</span><span class="newJuryNum">6800</span> <span>粉丝</span></p><p class="newJuryG">关注</p></div> -->
         </div>
         <div class="newJuryACon">
             <p class="newJuryConT">
                 <img class="newJurySqure" src="../images/circle.png"></img>
                 个人简介
             </p>
-            <div>
+            <div class="newJuryIntro">
                     男高音，伊斯特曼音乐学院声乐教授，其丰富的国际演出经历包括：与世界知名女高音弗莱明合作在卡内基音乐厅演出《白衣夫人》、在纽约林肯中心莫扎特音乐节担任独唱、在希腊演出《俄狄浦斯王》男主角、在爱尔兰韦克斯福德歌剧节演出瓦格纳歌剧《爱情的禁令》男主角。
                     
-                    作为一名知名的歌唱家，罗伯特·斯文森出版过多张录音专辑，其中包括：圣桑的《参孙和大利拉》、斯特拉文斯基的《俄狄浦斯王》、海顿的《奥菲欧》、门德尔松的《以利亚》等几十张专辑。
+                    作为一名知名的歌唱家，罗伯特·斯文森出版过多张录音专辑，其中包括：圣桑的《参孙和大利拉》、斯特拉文斯基的《俄狄浦斯王》、海顿的《奥菲欧》、门德尔松的《以利亚》等几十张专辑。作为一名知名的歌唱家，罗伯特·斯文森出版过多张录音专辑，其中包括：圣桑的《参孙和大利拉》、斯特拉文斯基的《俄狄浦斯王》、海顿的《奥菲欧》、门德尔松的《以利亚》等几十张专辑。
             </div>
         </div>
     </div>
@@ -48,18 +42,32 @@
   <script>
     $(function(){
       $.ajax({
-        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1001&userid=1',
+        url:httpD+'/zr/jury/getJuryData.do?userid=1&juryid=1',
         type:'POST',
         success:function(data){
-          if (data.code == 0) {
-            console.log(data);
-            var data = data.data;
+            if (data.code == 0) {
+                console.log(data);
+                var data =data.data;
+                newJuryHeadData(data);
+                if (data.intro == null) {
+                    $('.newJuryIntro').html('暂无简介');
+                } else {
+                    $('.newJuryIntro').html(data.intro);   
+                }
             }
+            if ($('.newJuryG').attr('abc') == 0) {
+                $('.newJuryG').html('关注');
+            } else if($('.newJuryG').attr('abc') == 1) {
+                $('.newJuryG').html('已关注');
+            }
+            
         }
       })
       console.log(location.href);
     })
-
+    function newJuryHeadData(data){
+        $('.newJuryHead').html('<img src="'+data.heading+'" alt=""><div><h1>'+data.name+'</h1><p class="newJuryS"><span>'+data.skill+'</span> <span>'+data.school+'</span></p><p><span class="newJuryNum">'+data.fansnum+'</span> <span>粉丝</span></p><p class="newJuryG" abc="'+data.type+'">关注</p></div>');
+    }
   </script>
 </body>
 </html>
