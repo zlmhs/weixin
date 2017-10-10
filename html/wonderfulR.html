@@ -73,6 +73,8 @@
             var x = $(this).html();
             typeFun(i,x);
           })
+          var headingTime = Number($('.tTime').html());
+          $('.tTime').html(getDate(headingTime));
 
         }
       })

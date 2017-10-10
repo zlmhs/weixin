@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <title>罗伯特·斯文森</title>
+</head>
+<body>
+  <div id="juryCardAbstarct" class="wrap">
+    <div class="con">
+        <div class="newJuryHead">
+            <img src="../images/head.png" alt="">
+            <div>
+                <h1>罗伯特·斯文森</h1>
+                <p class="newJuryS"><span>女高音</span> <span>巴德隆基大学</span></p>
+                <p><span class="newJuryNum">18</span> <span>关注</span><span class="newJuryNum">6800</span> <span>粉丝</span></p>
+                <p class="newJuryG">关注</p>
+            </div>
+        </div>
+        <div class="newJuryACon">
+            <p class="newJuryConT">
+                <img class="newJurySqure" src="../images/circle.png"></img>
+                个人简介
+            </p>
+            <div>
+                    男高音，伊斯特曼音乐学院声乐教授，其丰富的国际演出经历包括：与世界知名女高音弗莱明合作在卡内基音乐厅演出《白衣夫人》、在纽约林肯中心莫扎特音乐节担任独唱、在希腊演出《俄狄浦斯王》男主角、在爱尔兰韦克斯福德歌剧节演出瓦格纳歌剧《爱情的禁令》男主角。
+                    
+                    作为一名知名的歌唱家，罗伯特·斯文森出版过多张录音专辑，其中包括：圣桑的《参孙和大利拉》、斯特拉文斯基的《俄狄浦斯王》、海顿的《奥菲欧》、门德尔松的《以利亚》等几十张专辑。
+            </div>
+        </div>
+    </div>
+    <div class="payFooter">
+        <img class="footerTu" src="../images/logo_top.png" alt="">
+        <p class="downApp">
+            <span class="downAppSpan"></span>
+            <span class="downAppCon" onclick="downLoadAppFun()">App内购买</span>
+        </p>
+    </div>
+  </div>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <script>
+    $(function(){
+      $.ajax({
+        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1001&userid=1',
+        type:'POST',
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            var data = data.data;
+            }
+        }
+      })
+      console.log(location.href);
+    })
+
+  </script>
+</body>
+</html>
