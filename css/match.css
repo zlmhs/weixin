@@ -1492,4 +1492,18 @@
 #juryCardAbstarct .con{
   padding: 0 0 120px 0;
 }
+.wonderFulcon{
+  width: 100%;
+}
+.wonderFulChild{
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.pictureTDivCheck{
+  display: block;
+}
 
