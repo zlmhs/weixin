@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <title>大师课</title>
+</head>
+<body>
+    <div id="masterClass" class="wrap" style="padding:0 0 120px 0;">
+        <div class="courseTop">
+            <div class="courseHeadingDiv">
+                <!-- <img class="courseHeadingImg" src="../images/courseT.jpg" alt=""><h1 class="courseHeadName">罗伯特·勃兰特</h1><p class="courseHeadSkill">女高音 朱莉亚音乐学院</p><p class="courseHeadMoney">¥1000/课时</p> -->
+            </div>
+            <div class="courseAlertDiv">
+                <span class="courseAlertSpan">提示</span>
+                <div class="courseAlertWen">
+                    <p>1. 大师课30分钟/课时，一人仅可购买同一大师一节课</p>
+                    <p>2. 大师课主办方免费提供钢琴伴奏</p>
+                </div>
+            </div>
+        </div>
+        <div class="courseBottom">
+            <h1>
+                <span class="courseTitleCircle"></span>
+                <span class="courseTitleWen">大师介绍</span>
+            </h1>
+            <p class="courseBottomCon">
+            </p>
+        </div>
+    </div>
+    <div class="payFooter">
+        <img class="footerTu" src="../images/logo_top.png" alt="">
+        <p class="downApp">
+            <span class="downAppSpan"></span>
+            <span class="downAppCon" onclick="downLoadAppFun()">App内购买</span>
+        </p>
+    </div>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <script>
+    // $(function(){
+      $.ajax({
+        url:httpD+'/zr/tCourse/selectCourseById.do?id=2',
+        type:'POST',
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            getMasterData(data.data);
+          }
+        }
+      })
+      function getMasterData(data){
+        $('.courseHeadingDiv').html('<img class="courseHeadingImg" src="'+data.heading+'" alt=""><h1 class="courseHeadName">'+data.name+'</h1><p class="courseHeadSkill">'+data.skill+' '+data.school+'</p><p class="courseHeadMoney">¥'+data.price+'/课时</p>');
+        var arr = data.intro.split('<body>')[1];
+        $('.courseBottomCon').html(arr.split('</body>')[0]);
+      }
+    // })
+  </script>
+</body>
+</html>

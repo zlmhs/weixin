@@ -9,40 +9,22 @@
   <script src="../js/ort.js"></script>
   <link rel="stylesheet" href="../css/public.css">
   <link rel="stylesheet" href="../css/match.css">
-  <link rel="stylesheet" href="../css/swiper-3.4.2.min.css">
-  <script src="../js/swiper-3.4.2.jquery.min.js"></script>
   <title>精彩图集</title>
 </head>
 <body>
-  <div id="wonderfulR" class="wrap wonderFulTCon">
+  <div id="wonderfulR" class="wrap wonderFulTCon" unselectable="on" onselectstart="return false;">
     <div class="wonderFulcon">
-        <div class="wonderFulChild pictureTDivCheck">
-          <img class="wonderfulImg" src="../images/busbg.png" alt="">
+        <!-- <div><div class="wonderFulChild pictureTDivCheck"><img class="wonderfulImg" src="../images/busbg.png" alt=""></div><div class="wonderfulDetail"><div class="wonderfulTMeng"></div><div class="wonderfulTMengSlide">美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这是个占位符</div></div></div>
+        <div class="wonderFulChild"><img class="wonderfulImg" src="../images/banner.png" alt=""><div class="wonderfulDetail"><div class="wonderfulTMeng"></div><div class="wonderfulTMengSlide">美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这是个占位符</div></div></div>
+        <div class="wonderFulChild">
+          <img class="wonderfulImg" src="../images/cardEng.jpg" alt="">
           <div class="wonderfulDetail">
               <div class="wonderfulTMeng"></div>
               <div class="wonderfulTMengSlide">
                   美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这是个占位符
               </div>
           </div>
-        </div>
-        <div class="wonderFulChild">
-          <img class="wonderfulImg" src="../images/banner.png" alt="">
-          <div class="wonderfulDetail">
-              <div class="wonderfulTMeng"></div>
-              <div class="wonderfulTMengSlide">
-                  美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这是个占位符
-              </div>
-          </div>
-        </div>
-        <div class="wonderFulChild">
-            <img class="wonderfulImg" src="../images/cardEng.jpg" alt="">
-            <div class="wonderfulDetail">
-                <div class="wonderfulTMeng"></div>
-                <div class="wonderfulTMengSlide">
-                    美国音乐家鲍勃·迪伦获2016年诺贝尔文奖这是个占位符
-                </div>
-            </div>
-          </div>
+        </div> -->
     </div>
     <div class="payFooter">
         <img class="footerTu" src="../images/logo_top.png" alt="">
@@ -55,48 +37,53 @@
   <script src="../js/https.js"></script>
   <script src="../js/package.js"></script>
   <script>
-    console.log($('.wonderfulTMengSlide').height());
     var h = $('.wonderfulTMengSlide').height();
+    var pictureMaxNum;
     $('.wonderfulTMengSlide').css('margin-top',-h/2);
-    $(function(){
+    // $(function(){
       $.ajax({
-        url:httpC+'/zr/altas/altasDetail.do?id=1',
+        url:httpD+'/zr/altas/atlasDetail.do?id=7',
         type:'POST',
         success:function(data){
           if (data.code == 0) {
             console.log(data);
             var data = data.data;
-            }
+            console.log(data);
+            pictureMaxNum = data.length;
+            getDataPictureFun(data);
+          }
+          $('.pictureZuiWai').eq(0).show();
         }
       })
       console.log(location.href);
-    })
+    // })
+    function  getDataPictureFun(data){
+      for (var i = 0; i < data.length; i++) {
+        var odiv = '<div class="pictureZuiWai" style="display:none;"><div class="wonderFulChild"><img class="wonderfulImg" src="'+data[i].imgurl+'" alt=""></div><div class="wonderfulDetail"><div class="wonderfulTMeng"></div><div class="wonderfulTMengSlide">'+data[i].introduce+'</div></div></div>';
+        $('.wonderFulcon').append(odiv);
+      }
+    }
     var startY=0,endY=0,n=1,flag=false;
-	document.addEventListener('touchstart',function(ev){
-		startY=ev.targetTouches[0].pageX;
-	},false);
-	document.addEventListener('touchmove',function(ev){
-		endY=ev.targetTouches[0].pageX;
-		flag=true;
-		ev.preventDefault();
-	},false);
+    document.addEventListener('touchstart',function(ev){
+      startY=ev.targetTouches[0].pageX;
+    },false);
+    document.addEventListener('touchmove',function(ev){
+      endY=ev.targetTouches[0].pageX;
+      flag=true;
+      ev.preventDefault();
+    },false);
 	document.addEventListener('touchend',function(ev){
-		//阻止窗口滚动条
       //左滑
-      console.log(startY,endY);
-      console.log(startY-endY<-100);
     if (flag) {
       if (startY-endY>100) {
         flag = false;
-				if (n>=3) {
-					n=3;
+				if (n>=pictureMaxNum) {
+					n=pictureMaxNum;
 					return;
 				}
-        console.log(n);
-        $('.wonderFulChild').hide();
-        $('.wonderFulChild').eq(n).show();
+        $('.pictureZuiWai').hide();
+        $('.pictureZuiWai').eq(n).show();
 				n++;
-        console.log(n);
 			}
       //右滑
 			if (startY-endY<-100) {
@@ -106,9 +93,8 @@
 					return;
 				}
         n--;
-        $('.wonderFulChild').hide();
-        console.log('n',n);
-        $('.wonderFulChild').eq(n-1).show();
+        $('.pictureZuiWai').hide();
+        $('.pictureZuiWai').eq(n-1).show();
 			
 			}
     }

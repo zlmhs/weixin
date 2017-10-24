@@ -9,32 +9,28 @@
   <script src="../js/ort.js"></script>
   <link rel="stylesheet" href="../css/public.css">
   <link rel="stylesheet" href="../css/match.css">
-  <title>赛事详情</title>
+  <title>音乐节详情</title>
 </head>
 <body>
-  <div id="matchDetails" class="wrap">
-    <!-- <div class="header">
-      <div>
-        <img onclick="window.history.go(-1)" src="../images/bReturn.png" alt="">
-        <p>赛事详情</p>
-      </div>
-    </div> -->
+  <div id="musicDetail" class="wrap">
     <div class="con">
-      <!-- <div class="conHeader">
-        <img src="../images/LOGO.png" alt="">
-        <button class="shareBtn">打开</button>
-      </div> -->
       <div class="detailH">
+            
+      </div>
+      <div class="detailPeople">
+        <h1>特约名师 &nbsp; <span class="teachSpan">SECIAL TEACHER</span></h1>
+        <ul class="listD">
 
+        </ul>
       </div>
       <div class="detailAbstract">
-        <h1>赛事简介 <span onclick="gotoMatchDetailPageFun(1)" class="matchDetailJian">></span></h1>
+        <h1>音乐节介绍 &nbsp; <span class="abstractSpan">INTRODUCTION</span> <span onclick="gotoMatchDetailPageFun(1)" class="matchDetailJian">查看全部 ></span></h1>
         <!-- <span class="slideDW">展开</span> -->
         <!-- <iframe class="matchAbsP" src="" frameborder="0"></iframe> -->
         <p class="matchAbsP"></p>
       </div>
       <div class="detailAbstract">
-        <h1>赛事章程 <span onclick="gotoMatchDetailPageFun(2)" class="matchDetailJian">></span></h1>
+        <h1>音乐节章程 &nbsp; <span class="zhangSpan">CHARTER</span> <span onclick="gotoMatchDetailPageFun(2)" class="matchDetailJian">查看全部 ></span></h1>
         <!-- <span class="slideDW">展开</span> -->
         <p class="matchZCsP"></p>
       </div>
@@ -42,12 +38,6 @@
         <h1>报名方式 <span onclick="gotoMatchDetailPageFun(3)" class="matchDetailJian">></span></h1>
         <!-- <span class="slideDW">展开</span> -->
         <p class="matchEnrollsP"></p>
-      </div>
-      <div class="detailPeople">
-        <h1>评委会成员</h1>
-        <ul class="listD">
-
-        </ul>
       </div>
     </div>
     <div class="payFooter" style="display:none;">
@@ -79,34 +69,20 @@
             console.log(data.detail.introduce);
             matchStatus = data.detail.status;
           }
-          var x=$('.statusD').html();
-          type(x);
-          // var he = $('.detailAbstract').height()+100;
-          // console.log(he);
-          // if ($('.detailAbstract').height()>500) {
-          //   $('.detailAbstract').height(500);
-          //   $('.slideDW').css('display','block');
-          // }
-          // $('.slideDW').click(function(){
-          //   $('.detailAbstract').animate({height:he});
-          //   $('.slideDW').css('display','none');
-          // })
-          // $('.detailAbstract #editor').css('width','680px');
         }
       
       })
-     
     // })
     function getData(data){
       var detail = data.detail;
-      $('.detailH').html('<img src="'+detail.image+'" alt=""><span class="statusD">'+detail.status+'</span><div class="detailDiv"><img src="'+detail.icon+'" alt=""><div><p>'+detail.intro+'</p><p><span>报名时间：'+detail.createtime+'-'+detail.endtime+'</span><span>已有<b>'+detail.number+'</b>人报名</span></p><p>主办方：'+detail.sponsor+'</p></div></div>');
+      $('.detailH').html('<img src="'+detail.image+'" alt=""><span class="musicStatusD">正在报名·160人·30天后截止</span><div class="detailDiv"><img src="'+detail.icon+'" alt=""><div><p>'+detail.intro+'</p><p><span>报名时间：'+detail.createtime+'-'+detail.endtime+'</span><p>主办方：'+detail.sponsor+'</p></div></div>');
       $('.matchAbsP').html(detail.introduce1);
       // $('.matchAbsP').attr('src',detail.introduce);
       $('.matchZCsP').html(detail.constitution1);
       $('.matchEnrollsP').html(detail.mode1);
       var list = data.list;
       for (var i = 0; i < list.length; i++) {
-        var oli =$('<li><img src="'+list[i].heading+'" alt=""><p>'+list[i].name+'</p><p>'+list[i].school+'</p></li>');
+        var oli =$('<li><img src="'+list[i].heading+'" alt=""><p>'+list[i].name+'</p><p>'+list[i].skill+'</p></li>');
         $('.listD').append(oli);
       }
       if (detail.status ==1 || detail.status==2) {

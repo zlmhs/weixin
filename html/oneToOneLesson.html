@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <title>一对一小课</title>
+</head>
+<body>
+    <div id="oneToOneLesson" class="wrap" style="padding:0 0 120px;">
+        <div class="courseTop">
+            <div class="courseHeadingDiv">
+                <!-- <img class="courseHeadingImg" src="../images/courseT.jpg" alt=""><h1 class="courseHeadName">罗伯特·勃兰特</h1><p class="courseHeadSkill">女高音 朱莉亚音乐学院</p><p class="courseHeadNum">10节可预约</p> -->
+            </div>
+            <div class="courseCheckDiv">
+                <div class="courseCheckChildRed">
+                    <img class="courseDuiGou" src="../images/Check .png" alt="">
+                    <p class="courseCheckChildTop">课程</p>
+                    <p class="courseCheckChildBottom">¥1000/课时</p>
+                </div>
+                <div class="courseCheckChild">
+                    <img class="courseDuiGou" src="../images/Check .png" alt="">
+                    <p class="courseCheckChildTop">课程+钢伴</p>
+                    <p class="courseCheckChildBottom">¥1200/课时</p>
+                </div>
+            </div>
+            <div class="coursePayNum">
+                <span class="coursePayNumOne">购买数量</span>
+                <span class="coursePayNumTwo">一</span>
+                <span class="coursePayNumThree">1</span>
+                <span class="coursePayNumTwo">+</span>
+            </div>
+            <div class="courseAlertDiv">
+                <span class="courseAlertSpan">提示</span>
+                <div class="courseAlertWen">
+                    <p>1.一对一小课30分钟/课时，需要钢琴伴奏，可自带钢伴或者购买钢伴服务</p>
+                    <p> 2.每人仅可购买大师课和一对一小课共计4节课程</p>
+                </div>
+            </div>
+        </div>
+        <div class="courseBottom">
+            <h1>
+                <span class="courseTitleCircle"></span>
+                <span class="courseTitleWen">授课老师介绍</span>
+            </h1>
+            <p class="courseBottomCon">
+                    美国古典声乐家国际声乐比赛是最受美国声乐学生欢迎的国际声乐比赛，其组委会位于美国犹他州盐湖城。大赛是一个集国际声乐比赛、美国著名音乐院校博览会和声乐大师班为一体的声乐、歌剧方面权威的综合性活动。
+                    
+                    学生在参加国际比赛的同时、更有机会获得著名音乐院校直接录取和丰厚奖学金的难得机会。从2013年开始，大赛除保留传统的“古典美声歌剧组国际声乐比赛”外，还增设了“音乐剧组国际声乐比赛”。两个组别均设有“高中组”、“大学组”、“青年艺术家组”三个级别，以满足广大参赛选手的参赛需求。大赛中国及亚太地区的唯一指定报名机构古典音乐家网。
+            </p>
+        </div>
+    </div>
+    <div class="payFooter">
+        <img class="footerTu" src="../images/logo_top.png" alt="">
+        <p class="downApp">
+            <span class="downAppSpan"></span>
+            <span class="downAppCon" onclick="downLoadAppFun()">App内购买</span>
+        </p>
+    </div>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <script>
+    // $(function(){
+    $.ajax({
+        url:httpD+'/zr/tCourse/selectCourseById.do?id=2',
+        type:'POST',
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            getMasterData(data.data);
+          }
+        }
+      })
+      function getMasterData(data){
+        $('.courseHeadingDiv').html('<img class="courseHeadingImg" src="'+data.heading+'" alt=""><h1 class="courseHeadName">'+data.name+'</h1><p class="courseHeadSkill">'+data.skill+' '+data.school+'</p><p class="courseHeadNum">'+data.makenum+'节可预约</p>');
+        var arr = data.intro.split('<body>')[1];
+        $('.courseBottomCon').html(arr.split('</body>')[0]);
+      }
+    // })
+  </script>
+</body>
+</html>

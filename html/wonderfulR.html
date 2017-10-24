@@ -21,14 +21,15 @@
       </div>
     </div> -->
     <div class="con">
-      <div class="conHeader">
+      <!-- <div class="conHeader">
         <img src="../images/LOGO.png" alt="">
         <button class="shareBtn">打开</button>
-      </div>
-      <div class="wonderTi">
+      </div> -->
+      <div class="wonderTi wonderRTi">
         <p class="slideImg" id="rVideo">
           <video id="my-video" class="video-js vjs-big-play-centered" webkit-playsinline="true" poster=""  playsinline="true" controls preload width="750" height="341" data-setup="{}" ><source src="" type="video/mp4"></video>
-        </p>
+          <!-- <span class="wonderVDu"></span> -->
+          </p>
         <div class="videoS">
 
         </div>
@@ -45,10 +46,17 @@
 
         </ul>
       </div>
-      <div class="footer">
+      <!-- <div class="footer">
         <input class="ipt" type="text" placeholder="有何高见...">
         <img src="../images/comment.png" alt="">
-      </div>
+      </div> -->
+    </div>
+    <div class="payFooter">
+        <img class="footerTu" src="../images/logo_top.png" alt="">
+        <p class="downApp">
+            <span class="downAppSpan"></span>
+            <span class="downAppCon" onclick="downLoadAppFun()">前往下载</span>
+        </p>
     </div>
   </div>
   <script src="../js/https.js"></script>
@@ -56,13 +64,14 @@
   <script>
     $(function(){
       $.ajax({
-        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1001&userid=1',
+        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1000&userid=1',
         type:'POST',
         success:function(data){
           if (data.code == 0) {
             console.log(data);
             var data = data.data;
             $('.videoS').html('<p class="wonderP">'+data.Title+'</p><p class="wonderA"><span class="liDivBtn">'+data.Type+'</span><span>'+data.Commentnum+'评论</span><span>'+data.Playnum+'播放</span><span class="tTime">'+data.Distancetime+'</span></p>');
+            // $('.wonderVDu').html(data.duration);
             var x = data.Url;
              videojs('my-video').src(x);
             getData(data.recommendList);
@@ -75,6 +84,11 @@
           })
           var headingTime = Number($('.tTime').html());
           $('.tTime').html(getDate(headingTime));
+          $('.newsDate1').each(function(){
+            var i = $('.newsDate1').index(this);
+            var htm = Number($(this).html());
+            $('.newsDate1').eq(i).html(getDate(htm));
+          })
 
         }
       })
@@ -111,6 +125,7 @@
                 $('.newsDate2').eq(i).html('今天 '+clip.substr(clip.length-5,5));
               }
           })
+          
         }
       })
       console.log(location.href);
@@ -142,11 +157,11 @@
       if (data.length>0) {
         for (var i = 0; i < data.length; i++) {
           // var li = $('<li><img src="'+data[i].img+'" alt=""><div class="liDiv"><p>'+data[i].title+'</p><p><span class="liDivBtn">'+data[i].type+'</span><span>'+data[i].commentnum+'评论</span><span><b class="newsDate1">'+data[i].currenttime+'/'+data[i].distancetime+'</b></span></p></div><img class="play" src="../images/play.png" alt=""></li>');
-           var li = $('<li><img src="'+data[i].img+'" alt=""><div class="liDiv"><p>'+data[i].title+'</p><p><span class="liDivBtn">'+data[i].type+'</span><span>'+data[i].commentnum+'评论</span><span><b class="newsDate1">'+data[i].currenttime+'/'+data[i].distancetime+'</b></span></p></div></li>');
+           var li = $('<li><div class="xiangguanLeft"><img class="xiangguanVT" src="'+data[i].img+'" alt=""><img class="xiangguanPlay" src="../images/play.png" alt=""><span class="xiangDuration">'+data[i].duration+'</span></div><div class="liDiv"><p>'+data[i].title+'</p><p class="xiangGuan"><span class="liDivBtn xiangguanSpan">'+data[i].type+'</span><span>'+data[i].commentnum+'评论</span><span><b class="newsDate1">'+data[i].distancetime+'</b></span></p></div></li>');
           $('.wonderList').append(li);
         }
       } else {
-        $('.wonderList').html('<li style="padding:0 0 0 20px;font-size:30px;">暂无推荐</li>');
+        $('.wonderList').html('<li style="padding:0 0 0 40px;font-size:30px;">暂无推荐</li>');
       }
     }
     //评论数据渲染

@@ -4,6 +4,14 @@
   list-style: none;
   max-height: 999999px;
   box-sizing: border-box;
+  /* -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -o-user-select:none; */
+  /* pointer-events: none; */
 }
 .header{
   padding-top: 40px;

@@ -210,7 +210,7 @@
 
 /*今日要闻展开*/
 .wrap .con{
-  padding: 0 0 88px;
+  padding: 0 0 120px;
 }
 .wrap .conHeader{
   overflow: hidden;
@@ -250,9 +250,9 @@
 }
 #newShare .conTitle p:nth-of-type(2) span{
   font-size: 22px;
-  color: #9E9E9E;
+  color: #999999;
 }
-#newShare .conTitle p:nth-of-type(2) span:nth-of-type(1){
+/* #newShare .conTitle p:nth-of-type(2) span:nth-of-type(1){
   color: #BA9961;
   letter-spacing: 0.79px;
   border: 1px solid #BA9961;
@@ -261,9 +261,9 @@
 }
 #newShare .conTitle p:nth-of-type(2) span:nth-of-type(2){
   margin: 0 16px 0 27px;
-}
+} */
 .wrap .slideCon{
-  padding: 0 30px 30px;
+  padding: 32px 30px 30px;
   border-bottom: 20px solid  #F6F6F6;
 }
 .wrap .slideCon .slideImg {
@@ -303,19 +303,26 @@
   text-align: justify;
 }
 .wrap .recommend{
-  padding: 40px 30px 0;
-  border-bottom: 20px solid  #F6F6F6;
+  /* padding: 40px 30px 0; */
+  padding: 40px 0 0 ;
+  border-bottom: 16px solid  #F6F6F6;
 }
 .wrap .recommend h1{
   font-size: 32px;
   color: #252525;
   letter-spacing: 1.5px;
   margin-bottom: 10px;
+  padding: 0 0 0 32px;
 }
 .wrap .recommend ul li{
   overflow: hidden;
-  padding: 30px 0 30px;
+  padding: 30px 32px 30px 24px;
   position: relative;
+  /* border-bottom: 8px  solid  #F6F6F6; */
+  border-bottom: 1px  solid  #F6F6F6;
+}
+.wrap .recommend ul li:nth-last-of-type(1){
+  border: none;
 }
 .wrap .recommend ul li .play{
   width: 62px;
@@ -325,7 +332,7 @@
   top: 74px;
 }
 .wrap .recommend ul li:nth-of-type(1)~li{
-  border-top: 1px solid #e3e3e3;
+  border-top: 8px solid #F6F6F6;
 }
 .wrap .recommend ul li:nth-last-of-type(1){
   padding-bottom: 40px;
@@ -333,19 +340,71 @@
 .wrap .recommend ul li .liDiv{
   float: left;
   max-width: 432px;
+  margin: 48px 0 0 0;
+}
+#wonderfulR .recommend ul li .liDiv{
+  margin: 0;
 }
 .wrap .recommend ul li .liDiv p,.wrap .recommend ul li .liDiv span{
   letter-spacing: 0;
   line-height: 40px;
 }
+.wrap .recommend ul li .liDiv p.xiangGuan{
+  overflow: hidden;
+  margin: 46px 0 0 0;
+}
+.wrap .recommend ul li .liDiv p.xiangGuan span{
+  float: left;
+}
+.wrap .recommend ul li .liDiv p.xiangGuan span:nth-last-of-type(1){
+  float: right;
+}
+.xiangguanSpan{
+  margin: 4px 27px 0 0;
+}
 .wrap .recommend ul li>img{
   float: right;
 }
-#wonderfulR .recommend ul li img:nth-of-type(1){
+.wrap .recommend ul li img.xiangguanPlay{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 62px;
+  height: 62px;
+}
+#wonderfulR .recommend ul li .xiangguanLeft{
   float: left;
   margin-right: 20px;
   width: 236px;
   height: 150px;
+  position: relative;
+}
+#wonderfulR .recommend ul li .xiangguanLeft .xiangguanVT{
+  width: 236px;
+  height: 150px;
+}
+.xiangDuration{
+  background: linear-gradient(-90deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.13) 51%, rgba(0,0,0,0.39) 98%);
+  border-radius: 6px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 20px;
+  color: #F6F6F6;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+}
+.wonderVDu{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 20px;
+  color: #F6F6F6;
+  letter-spacing: 1px;
+  background: linear-gradient(-90deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.13) 51%, rgba(0,0,0,0.39) 98%);
+  border-radius: 6px;
+  padding: 3px 10px;
 }
 #wonderfulR .wonderP{
   max-width: 690px;
@@ -357,10 +416,12 @@
 }
 #wonderfulR .wonderA{
   margin: 0 30px;
+  overflow: hidden;
 }
 #wonderfulR .wonderA span{
   font-size: 24px;
   color: #9E9E9E;
+  float: left;
 }
 #wonderfulR .wonderA span:nth-of-type(2){
   margin: 0 16px 0 30px;
@@ -370,9 +431,24 @@
   margin-right: 32px;
 }
 .wrap .recommend ul li .liDiv p:nth-of-type(1){
+  font-size: 32px;
+  color: #222222;
+  letter-spacing: 0.3px;
+  line-height: 42px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  overflow: hidden;
+}
+#wonderfulR .recommend ul li .liDiv p:nth-of-type(1){
   font-size: 28px;
-  color: #4b4b4b;
-  min-height: 107px;
+  color: #444444;
+  letter-spacing: 1.5px;
+  line-height: 38px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  overflow: hidden;
 }
 .wrap .recommend ul li .liDiv p:nth-of-type(2) span{
   font-size: 22px;
@@ -380,12 +456,24 @@
 }
 .wrap .recommend ul li .liDiv p:nth-of-type(2) span.liDivBtn,.liDivBtn{
   color: #5bafb7;
+  /* border: 1px solid #5bafb7; */
+  /* padding: 5px 9px; */
+  /* border-radius: 6px; */
+  float: left;
+}
+#wonderfulR .recommend ul li .liDiv p:nth-of-type(2) span.liDivBtn,#wonderfulR .wonderA span.liDivBtn{
+  color: #5bafb7;
   border: 1px solid #5bafb7;
-  padding: 5px 9px;
+  height: 30px;
+  line-height: 30px;
   border-radius: 6px;
+  padding: 0 6px;
+  font-size: 20px;
+  color: #61B2BA;
+  letter-spacing: 0;
 }
 .wrap .recommend ul li .liDiv p:nth-of-type(2) span.liDivBtn+span{
-  margin: 0 30px 0 20px;
+  margin: 0 30px 0 0px;
 }
 .wrap .comment{
   padding: 40px 30px 0;
@@ -408,6 +496,7 @@
   width: 58px;
   height: 58px;
   float: left;
+  border-radius: 50%;
 }
 #wonderfulT  .comment ul li img{
   width: 68px;
@@ -473,13 +562,15 @@
 /*赛事详情*/
 .detailH>img{
   display: block;
-  width: 718px;
+  /* width: 718px; */
+  width: 100%;
   height: 320px;
-  margin: 24px 16px 30px;
+  /* margin: 24px 16px 30px; */
+  margin: 0 0 30px 0;
 }
 .detailH .detailDiv{
   overflow: hidden;
-  border-bottom: 1px solid #E6E6E6;
+  /* border-bottom: 1px solid #E6E6E6 */
   margin: 0 30px;
   padding-bottom: 30px;
 }
@@ -494,10 +585,13 @@
   max-width: 578px;
 }
 .detailH .detailDiv div p:nth-of-type(1){
-  font-size: 30px;
+  font-size: 28px;
   color: #252525;
   letter-spacing: 1.71px;
-  line-height: 28px;
+  line-height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .detailH .detailDiv div p:nth-of-type(1)~p{
   font-size: 23px;
@@ -529,15 +623,27 @@
   text-indent: 16px;
   height: 35px;
   line-height: 35px;
+  overflow: hidden;
+}
+.matchDetailJian{
+  float: right;
+  color: #999999;
+  border-radius: 6px;
 }
 .detailAbstract  p{
   text-indent:2em;
-  font-size: 28px;
-  color: #444444;
-  line-height: 48px;
   margin: 36px 0 0;
   text-align: justify;
   overflow: hidden;
+  font-size: 32px;
+  color: #444444;
+  letter-spacing: 0.6px;
+  line-height: 60px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:4;
+  text-overflow: ellipsis;
 }
 .detailPeople{
   padding: 37px 0 0;
@@ -567,6 +673,7 @@
   font-size: 24px;
   color: #ABABAB;
   text-align: center;
+  height: 62px;
 }
 
 /*个人名片*/
@@ -1287,7 +1394,8 @@
   width: 100%;
   height: 120px;
   background: #FFFFFF;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+  /* box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10); */
+  box-shadow: 0 -4px 8px 0 rgba(0,0,0,0.04);
 }
 .downApp{
   float: right;
@@ -1329,20 +1437,20 @@
 }
 .wonderfulImg{
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 }
 .wonderfulDetail{
   width: 100%;
-  height: 175px;
+  height: 230px;
   position: fixed;
   left: 0;
   bottom:120px;
 }
 .wonderfulDetail .wonderfulTMeng{
-  width: 100%;
+  /* width: 100%;
   height: 100%;
   opacity: 0.3;
-  background: #000000;
+  background: #000000; */
 }
 .wonderfulTMengSlide{
   padding: 0 34px 0 30px;
@@ -1352,8 +1460,13 @@
   line-height: 40px;
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 20%;
   vertical-align: middle;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:4;
 }
 .newBusVideoType{
   position: absolute;
@@ -1494,16 +1607,508 @@
 }
 .wonderFulcon{
   width: 100%;
+  height: 100vh;
+  background: #000;
 }
 .wonderFulChild{
-  display: none;
+  /* display: none; */
   width: 100vw;
+  /* height: 100vh; */
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 100;
+  transform: translate(0.-50%);
+  -webkit-transform: translate(0,-50%);
+}
+.pictureTDivCheck{
+  display: block;
+}
+/* 今日要闻改动 */
+.newChangeCircleP{
+  overflow: hidden;
+}
+.newChangeCircleP img{
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin: 7px 10px 0 0;
+}
+.newChangeCircleP  span{
+  float: right;
+}
+.newChangeCircleP  span.newTy{
+  float: left;
+}
+.wonderRTi{
+  border-bottom: 20px solid #F6F6F6;
+  padding: 0 0 30px 0;
+}
+#matchDetails .detailH{
+  border-bottom: 10px solid #F6F6F6;
+}
+.wonderFulcon>div{
+  width: 100%;
   height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
 }
-.pictureTDivCheck{
+/* 票选 */
+.voteDetailImg{
+  width: 100%;
+  height: 331px;
+}
+.voteDetailCon{
+  background: #FFFFFF;
+  margin: 32px 32px 0;
+}
+.voteDetailConDiv{
+  width: 100%;
+  height: 304px;
+  margin: 0 0 16px 0;
+  overflow: hidden;
+  border: 1px solid rgba(151,151,151,0.30);
+  border-radius: 8px;
+}
+.voteDetailDLeft{
+  width: 400px;
+  float: left;
+  padding: 16px 0 29px 16px;
+  /* background: url('../images/blur.png') 0 0 no-repeat; */
+  background: linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(255,255,255,1) 90%) ;
+}
+.voteDetailDRightPlay{
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+}
+.voteDetailDRight{
+  width: 284px;
+  float: left;
+  position: relative;
+  height: 304px;
+}
+.voteDetailDRight .voteDetailDRightBImg{
+  width: 100%;
+  height: 304px;
+  border-radius: 0 8px 8px 0;
+}
+.voteDetailHeadingDiv{
+  overflow: hidden;
+  position: relative;
+  padding: 0 0 21px 0;
+}
+.voteDetailHeadingImg{
+  width: 96px;
+  height: 96px;
+  /* transform: rotate(-19deg); */
+  border-radius: 50%;
+  float: left;
+}
+.voteDetailHeadingWen{
+  float: left;
+  margin: 0 0 0 16px;
+}
+.voteDetailHeadingWen span{
   display: block;
 }
+.voteDetailHeadingWen span:nth-of-type(1){
+  font-size: 32px;
+  color: #282828;
+  letter-spacing: 1.5px;
+  margin: 21px 0 10px 0;
+  height: 32px;
+}
+.voteDetailNumSpan{
+  position: absolute;
+  left: 21px;
+  bottom: 8px;
+  width: 46px;
+  height: 32px;
+  background: #F89134;
+  border-radius: 100px;
+  font-size: 24px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 32px;
+}
+.voteDetailHeadingWen span:nth-of-type(2){
+  font-size: 22px;
+  color: #999999;
+  letter-spacing: 1.5px;
+}
+.voteNumBtn{
+  width: 100%;
+  margin: 32px 0 0 0;
+  overflow: hidden;
+  font-size: 46px;
+  color: #F5A623;
+}
+.voteDetailClick{
+  float: right;
+  border: 2px solid #FA4F5E;
+  border-radius: 100px;
+  width: 160px;
+  height: 56px;
+  font-size: 28px;
+  color: #FA4F5E;
+  text-align: center;
+  line-height: 56px;
+  margin: 8px 14px 0 0 ;
+}
+.voteDetailClickGray{
+  background: #E9E9E9;
+  border: none;
+  color: #BABABA;
+}
+.voteRange{
+  margin: 21px 0 0 0;
+  width: 98%;
+  height: 16px;
+  background: #E9E9E9;
+  border-radius: 100px;
+  padding: 16px 0 0 0;
+  position: relative;
+}
+.voteRangeDiv{
+  position: absolute;
+  left: 0;
+  top: -15px;
+  height: 32px;
+  width: 100%;
 
+}
+.voteRangeNum{
+  height: 16px;
+  background: linear-gradient(90deg, #FAD962 0%, #F76B1C 100%);
+  border-radius: 100px 0 0 100px;
+  width: 50%;
+  float: left;
+  margin: 15px 0 0 0;
+}
+.voteRangeImg{
+  width: 30px;
+  height: 32px;
+  float: left;
+  margin: 1px;
+}
+/* 禁止长按选中 */
+.detailAbstract  p,#newShare .slideCon .videoS,.wonderfulTMengSlide,.courseAlertWen p,.courseBottomCon{
+   -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -o-user-select:none; 
+  pointer-events: none;
+}
+/* 大师课 */
+.courseTop{
+  width: 100%;
+  background: #fff;
+}
+.courseHeadingDiv{
+  width: 100%;
+}
+.courseHeadingImg{
+  display: block;
+  width: 288px;
+  height: 360px;
+  margin: 25px auto 48px;
+  border-radius: 6px;
+}
+.courseHeadName{
+  font-size: 40px;
+  color: #444444;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.courseHeadSkill{
+  font-size: 28px;
+  color: #444444;
+  letter-spacing: 1.87px;
+  text-align: center;
+}
+#masterClass .courseHeadSkill{
+  margin: 24px 0 40px 0;
+}
+.courseHeadMoney{
+  font-size: 32px;
+  color: #FA4F5E;
+  letter-spacing: 2.67px;
+  text-align: center;
+  margin: 0 0 40px 0;
+}
+.courseAlertDiv{
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid  #F0F0F0;
+  padding: 24px 32px 22px;
+}
+#oneToOneLesson .courseAlertDiv{
+  padding: 24px 0;
+}
+.courseAlertSpan{
+  float: left;
+  width: 64px;
+  height: 32px;
+  border: 1px solid #F5A623;
+  border-radius: 2px;
+  font-size: 22px;
+  color: #F5A623;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 32px;
+}
+.courseAlertWen{
+  float: left;
+  max-width: 598px;
+}
+.courseAlertWen p{
+  width: 100%;
+  font-size: 22px;
+  color: #9B9B9B;
+  letter-spacing: 1px;
+  margin: 0 0 10px 24px;
+}
+.courseBottom{
+  border-top: 16px solid #F6F6F6;
+  padding: 0 32px;
+}
+.courseBottom h1{
+  text-align: center;
+  margin: 32px 0 57px 0;
+}
+.courseTitleCircle{
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 4px solid #4A4A4A;
+}
+.courseTitleWen{
+  display: inline-block;
+  font-size: 32px;
+  color: #4A4A4A;
+  letter-spacing: 1.5px;
+}
+.courseBottomCon{
+  font-size: 32px;
+  color: #404040;
+  letter-spacing: 1px;
+  line-height: 56px;
+  text-align: justify;
+}
+#oneToOneLesson .courseHeadSkill{
+  margin: 16px 0 24px 0;
+}
+.courseHeadNum{
+  width: 160px;
+  height: 40px;
+  border: 1px solid #D53B49;
+  border-radius: 100px;
+  margin: 0 auto;
+  font-size: 22px;
+  color: #D53B49;
+  letter-spacing: 1.26px;
+  text-align: center;
+  line-height: 40px;
+}
+.courseCheckDiv{
+  width: 100%;
+  overflow: hidden;
+  margin: 40px 0 32px 0;
+}
+.courseCheckDiv>div{
+  width: 335px;
+  height: 150px;
+  float: left;
+  position: relative;
+}
+.courseCheckDiv>div p{
+  text-align: center;
+}
+.courseCheckDiv>div .courseCheckChildTop{
+  margin: 32px 0 18px 0;
+  font-size: 28px;
+  letter-spacing: 2.13px;
+}
+.courseCheckDiv>div .courseCheckChildBottom{
+  font-size: 28px;
+  letter-spacing: 2.4px;
+}
+.courseCheckDiv>div:nth-of-type(1){
+  margin: 0 16px 0 0;
+}
+.courseCheckDiv>div.courseCheckChild{
+  border: 1px solid #979797;
+  border-radius: 8px;
+}
+.courseCheckDiv>div.courseCheckChild  .courseCheckChildTop{
+  color: #4A4A4A;
+}
+.courseCheckDiv>div.courseCheckChild  .courseCheckChildBottom{
+  color: #9B9B9B;
+}
+.courseCheckDiv>div.courseCheckChildRed{
+  border: 1px solid #D53B49;
+  border-radius: 8px;
+}
+.courseCheckDiv>div.courseCheckChildRed  .courseCheckChildTop{
+  color:#D53B49;
+}
+.courseCheckDiv>div.courseCheckChildRed  .courseCheckChildBottom{
+  color: #FA4F5E;
+}
+#oneToOneLesson .courseTop{
+  padding: 0 32px;
+}
+.courseDuiGou{
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+}
+.courseCheckDiv>div.courseCheckChildRed .courseDuiGou{
+  opacity: 1;
+}
+.coursePayNum{
+  overflow: hidden;
+  margin: 32px 0 58px 0;
+}
+.coursePayNum span{
+  float: left;
+}
+.coursePayNumOne{
+  font-size: 28px;
+  color: #4A4A4A;
+  letter-spacing: 1.87px;
+  margin:19px 87px 0 0;
+}
+.coursePayNumTwo{
+  width:88px;
+  height:56px;
+  text-align: center;
+  line-height: 56px;
+  font-size: 24px;
+  color: #9B9B9B;
+  border: 1px solid #DDDDDD;
+  border-radius: 28px;
+}
+.coursePayNumThree{
+  width: 80px;
+  text-align: center;
+  font-size: 32px;
+  color: #4A4A4A;
+  letter-spacing: 2.13px;
+  line-height: 56px;
+}
+#musicDetail .detailH{
+  margin: 32px 32px 0;
+}
+#musicDetail .detailPeople{
+  border-top:16px solid #F5F5F5;
+  padding: 37px 0 0 30px;
+  margin: 0;
+}
+#musicDetail .musicStatusD{
+  position: absolute;
+  left: 40%;
+  top: 32px;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 38px;
+  background: linear-gradient(90deg, #4285F4 0%, #5A96FF 100%);
+  box-shadow: 0 1px 1px 0 #5190FB;
+  border-radius: 24px;
+  transform: translate(-34%,0);
+  -webkit-transform: translate(-34%,0);
+  font-size: 24px;
+  color: #FCFBFB;
+  letter-spacing: 0.75px;
+}
+#musicDetail .detailH .detailDiv{
+  margin: 0;
+}
+#musicDetail .detailH .detailDiv img{
+  width: 120px;
+  height: 120px;
+  margin: 0 16px 0 0;
+}
+#musicDetail .detailH .detailDiv div{
+  max-width: 550px;
+}
+#musicDetail .detailH .detailDiv div p:nth-of-type(1){
+  font-family: PingFangSC-Medium;
+  font-size: 36px;
+  color: #222222;
+  letter-spacing: 1.12px;
+  line-height: 44px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  overflow: hidden;
+  white-space: normal;
+}
+#musicDetail .detailH .detailDiv div p:nth-of-type(1)~p{
+  font-size: 24px;
+  color: #999999;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+#musicDetail .detailH .detailDiv div p:nth-of-type(2){
+  margin: 24px 0 16px;
+}
+#musicDetail .detailAbstract h1,#musicDetail .detailPeople h1{
+  border: none;
+}
+#musicDetail .teachSpan{
+  font-size: 32px;
+  color: #5270E8;
+  letter-spacing: -1px;
+  line-height: 32px;
+}
+#musicDetail .detailAbstract h1 span.abstractSpan{
+  color: #F77725;
+  font-size: 32px;
+  letter-spacing: -1px;
+  line-height: 32px;
+}
+#musicDetail .detailAbstract h1 span.zhangSpan{
+  color: #FF3369;
+  font-size: 32px;
+  letter-spacing: -1px;
+  line-height: 32px;
+}
+#musicDetail .matchDetailJian{
+  font-size: 24px;
+}
+#musicDetail .detailPeople ul li img{
+  display:block;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 0 auto;
+  /* position: absolute;
+  left:50%;
+  top:0;
+  margin:0 65px 0 -80px; */
+}
+#musicDetail .detailPeople ul li{
+  margin: 0;
+  min-width: 160px;
+  position: relative;
+  width:220px;
+  max-width:220px;
+}
+#musicDetail .detailPeople ul li p:nth-of-type(2){
+  height: 22px;
+}

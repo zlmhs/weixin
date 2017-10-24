@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <link rel="stylesheet" href="../css/public.css">
+  <link rel="stylesheet" href="../css/match.css">
+  <link href="../css/video-js.css" rel="stylesheet">
+  <title></title>
+</head>
+<body>
+  <div id="voteDetail" class="wrap">
+    <div class="con">
+        <img class="voteDetailImg" src="" alt="">
+        <div class="voteDetailCon">
+            <!-- <div class="voteDetailConDiv"><div class="voteDetailDLeft"><div class="voteDetailHeadingDiv"><img class="voteDetailHeadingImg" src="../images/head.png" alt=""><span class="voteDetailNumSpan">2</span><p class="voteDetailHeadingWen"><span>张一山</span><span>女高音</span></p></div><div class="voteRange"><div class="voteRangeDiv"><p class="voteRangeNum"></p><img class="voteRangeImg" src="../images/hand.png" alt=""></div></div><div class="voteNumBtn">89245票<span class="voteDetailClick">支持</span></div></div><div class="voteDetailDRight"><img class="voteDetailDRightPlay" src="../images/play.png" alt=""><img class="voteDetailDRightBImg" src="../images/banner.png" alt=""></div></div> -->
+        </div>
+    </div>
+    <div class="payFooter">
+        <img class="footerTu" src="../images/logo_top.png" alt="">
+        <p class="downApp">
+            <span class="downAppSpan"></span>
+            <span class="downAppCon" onclick="downLoadAppFun()">前往下载</span>
+        </p>
+    </div>
+  </div>
+  <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
+  <script>
+    // $(function(){
+      // 接收app传过来的值
+
+      // var href = location.href;
+      // var arr = href.split('=');
+      var obj ={
+        grouping:1004,
+        matchid:17,
+        userid:2,
+        date:1508721357000,
+        sign:'7AE9EFAF522B1079D7B8F1FF44B59D03',
+        pageNum:1,
+      };
+      $.ajax({
+        url:httpD+'/zr/voteIntro/selectVoteIntroDetail.do',
+        type:'POST',
+        data:obj,
+        success:function(data){
+          if (data.code == 0) {
+            console.log(data);
+            $('.voteDetailImg').attr('src',data.data.imgs.image);
+            var data = data.data.list;
+            getVoteDataFun(data);
+          }
+          $('.voteVoice').each(function(){
+            var i = $('.voteVoice').index(this);
+            var htm = Number($(this).html());
+            $('.voteVoice').eq(i).html(voiceType(htm));
+          })
+          $('.voteRangeNum').each(function(){
+            var i = $('.voteRangeNum').index(this);
+            var htm = $(this).attr('abc').split('/');
+            var top = htm[0];
+            var bottom = htm[1];
+            var x = Math.round((top/bottom)*10000)/100+'%';
+            console.log(x);
+            $('.voteRangeNum').eq(i).css('width',x);
+          })
+          $('.voteDetailClick').each(function(){
+            var i = $('.voteDetailClick').index(this);
+            var htm = Number($(this).attr('abc'));
+            if (htm == 1) {
+              $('.voteDetailClick').eq(i).html('支持');
+            }
+            else if (htm == 2) {
+              $('.voteDetailClick').eq(i).html('投票');
+              $('.voteDetailClick').eq(i).addClass('voteDetailClickGray');
+            }
+          })
+        }
+      })
+      function getVoteDataFun(data){
+        if (data.length>0) {
+          for (var i = 0; i < data.length; i++) {
+            var oli = '<div class="voteDetailConDiv"><div class="voteDetailDLeft"><div class="voteDetailHeadingDiv"><img class="voteDetailHeadingImg" src="'+data[i].heading+'" alt=""><span class="voteDetailNumSpan">'+data[i].rownum+'</span><p class="voteDetailHeadingWen"><span>'+data[i].name+'</span><span class="voteVoice">'+data[i].voicetype+'</span></p></div><div class="voteRange"><div class="voteRangeDiv"><p class="voteRangeNum" abc="'+data[i].votenum+'/'+data[i].count+'"></p><img class="voteRangeImg" src="../images/hand.png" alt=""></div></div><div class="voteNumBtn">'+data[i].votenum+'票<span class="voteDetailClick" abc="'+data[i].votestatus+'">支持</span></div></div><div class="voteDetailDRight"><img class="voteDetailDRightPlay" src="../images/play.png" alt=""><img class="voteDetailDRightBImg" src="'+data[i].image+'" alt=""></div></div>';
+            $('.voteDetailCon').append(oli);
+          }
+        }
+      }
+    // })
+  </script>
+</body>
+</html>
