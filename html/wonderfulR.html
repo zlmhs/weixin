@@ -62,9 +62,16 @@
   <script src="../js/https.js"></script>
     <script src="http://vjs.zencdn.net/5.18.4/video.min.js"></script>
   <script>
-    $(function(){
+    // $(function(){
+      var href = location.href;
+      var arr = href.split('=');
+      var id = arr[1].split('&')[0];
+      var typeid = arr[2].split('&')[0];
+      var userid = arr[3].split('&')[0];
+      var othersid = arr[4];
+      console.log(id,typeid,userid,othersid);
       $.ajax({
-        url:httpD+'/tReview/indexrewviewdetail.do?id=1&type=1000&userid=1',
+        url:httpD+'/tReview/indexrewviewdetail.do?id='+id+'&type='+typeid+'&userid='+userid,
         type:'POST',
         success:function(data){
           if (data.code == 0) {
@@ -97,7 +104,7 @@
         url:httpD+'/tComment/selectComments.do',
         type:'POST',
         // data:{"style":2,"reviewid":1},
-        data:{"style":2,"othersid":1},
+        data:{"style":2,"othersid":othersid},
         success:function(data){
           if (data.code == 0) {
             console.log(data);
@@ -128,8 +135,7 @@
           
         }
       })
-      console.log(location.href);
-    })
+    // })
     //音乐类型
     function typeFun(i,x){
       var obj={

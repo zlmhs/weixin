@@ -34,18 +34,25 @@
     // $(function(){
       // 接收app传过来的值
 
-      // var href = location.href;
-      // var arr = href.split('=');
+      var href = location.href;
+      var arr = href.split('=');
+      var grouid =arr[1].split('&')[0];
+      var matchid = arr[2].split('&')[0];
+      var userid = arr[3].split('&')[0];
+      var date = arr[4].split('&')[0];
+      var sign = arr[5];
+
       var obj ={
-        grouping:1004,
-        matchid:17,
-        userid:2,
-        date:1508721357000,
-        sign:'7AE9EFAF522B1079D7B8F1FF44B59D03',
+        grouping:grouid,
+        matchid:matchid,
+        userid:userid,
+        date:date,
+        // sign:'7AE9EFAF522B1079D7B8F1FF44B59D03',
+        sign:sign,
         pageNum:1,
       };
       $.ajax({
-        url:httpD+'/zr/voteIntro/selectVoteIntroDetail.do',
+        url:httpC+'/zr/voteIntro/selectVoteIntroDetail.do',
         type:'POST',
         data:obj,
         success:function(data){

@@ -41,6 +41,10 @@
     var pictureMaxNum;
     $('.wonderfulTMengSlide').css('margin-top',-h/2);
     // $(function(){
+      var href = location.href;
+      var arr = href.split('=');
+      var id = arr[1].split('&')[0];
+      console.log(id);
       $.ajax({
         url:httpD+'/zr/altas/atlasDetail.do?id=7',
         type:'POST',

@@ -55,7 +55,7 @@
             </p>
         </div>
     </div>
-    <div class="payFooter">
+    <div class="payFooter" style="display:none;">
         <img class="footerTu" src="../images/logo_top.png" alt="">
         <p class="downApp">
             <span class="downAppSpan"></span>
@@ -66,13 +66,20 @@
   <script src="../js/package.js"></script>
   <script>
     // $(function(){
+        // 接收app传过来的值
+        var href = location.href;
+        var arr = href.split('=');
+        var id = arr[1];
     $.ajax({
-        url:httpD+'/zr/tCourse/selectCourseById.do?id=2',
+        url:httpD+'/zr/tCourse/selectCourseById.do?id='+id,
         type:'POST',
         success:function(data){
           if (data.code == 0) {
             console.log(data);
             getMasterData(data.data);
+            if (data.data.status == 1) {
+                $('.payFooter').show();
+            }
           }
         }
       })

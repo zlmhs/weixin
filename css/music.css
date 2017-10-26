@@ -184,6 +184,7 @@ nput::-webkit-input-placeholder { /* WebKit browsers */
     height: 160px;
     display: block;
     border-radius:50%;
+    opacity: 0;
 }
 .upHeadingDiv .upHuzhaoImg1{
     width: 160px;

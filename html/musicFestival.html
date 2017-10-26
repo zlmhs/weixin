@@ -19,26 +19,28 @@
       </div>
       <div class="detailPeople">
         <h1>特约名师 &nbsp; <span class="teachSpan">SECIAL TEACHER</span></h1>
-        <ul class="listD">
-          <!-- <div class="singular"></div>
-          <div class="evenNum"></div> -->
-        </ul>
-      </div>
-      <div class="detailAbstract">
-        <h1>音乐节介绍 &nbsp; <span class="abstractSpan">INTRODUCTION</span> <span onclick="gotoMatchDetailPageFun(1)" class="matchDetailJian">查看全部 ></span></h1>
-        <!-- <span class="slideDW">展开</span> -->
-        <!-- <iframe class="matchAbsP" src="" frameborder="0"></iframe> -->
-        <p class="matchAbsP"></p>
-      </div>
-      <div class="detailAbstract">
-        <h1>音乐节章程 &nbsp; <span class="zhangSpan">CHARTER</span> <span onclick="gotoMatchDetailPageFun(2)" class="matchDetailJian">查看全部 ></span></h1>
-        <!-- <span class="slideDW">展开</span> -->
-        <p class="matchZCsP"></p>
-      </div>
-      <div class="detailAbstract">
-        <h1>报名方式 <span onclick="gotoMatchDetailPageFun(3)" class="matchDetailJian">></span></h1>
-        <!-- <span class="slideDW">展开</span> -->
-        <p class="matchEnrollsP"></p>
+        <div class="listD">
+            <div class="musicJuryLongDiv">
+                <div class="singular"></div>
+                <div class="evenNum"></div>
+            </div>
+        </div>
+        <div class="detailAbstract">
+            <h1>音乐节介绍 &nbsp; <span class="abstractSpan">INTRODUCTION</span> <span onclick="gotoMatchDetailPageFun(1)" class="matchDetailJian">查看全部 ></span></h1>
+            <!-- <span class="slideDW">展开</span> -->
+            <!-- <iframe class="matchAbsP" src="" frameborder="0"></iframe> -->
+            <p class="matchAbsP"></p>
+          </div>
+          <div class="detailAbstract">
+            <h1>音乐节章程 &nbsp; <span class="zhangSpan">CHARTER</span> <span onclick="gotoMatchDetailPageFun(2)" class="matchDetailJian">查看全部 ></span></h1>
+            <!-- <span class="slideDW">展开</span> -->
+            <p class="matchZCsP"></p>
+          </div>
+          <div class="detailAbstract">
+            <h1>报名方式&nbsp; <span class="enrollSpan">CONTACT</span><span onclick="gotoMatchDetailPageFun(3)" class="matchDetailJian">查看更多 ></span></h1>
+            <!-- <span class="slideDW">展开</span> -->
+            <p class="matchEnrollsP"></p>
+          </div>
       </div>
     </div>
     <div class="payFooter" style="display:none;">
@@ -50,8 +52,8 @@
     </div>
   </div>
   <script src="../js/https.js"></script>
+  <script src="../js/package.js"></script>
   <script>
-    // $(function(){
     	var id,userid;
         var href = location.href;
         console.log(href);
@@ -59,35 +61,55 @@
         id = arr[0].split('=')[1];
         userid = arr[1].split('=')[1];
         var matchStatus;
+        var genre;
       $.ajax({
-        url:httpD+'/detail/selectById.do?id='+id+'&userid='+userid,
+        url:httpC+'/zr/match/selectMatchDetail.do?id='+id+'&userid='+userid+'&style=2',
         type:'POST',
         success:function(data){
-          var data = eval('('+data+')');
-          if (data.code == 0) {
             console.log(data);
-            getData(data);
-            console.log(data.detail.introduce);
-            matchStatus = data.detail.status;
-          }
+            if (data.code == 0) {
+                getData(data);
+                matchStatus = data.data.status;
+                var listLength = data.data.juryList.length;
+                $('.slideListen').html('观摩报名(¥'+data.data.auditprice+')');
+                $('.runMatch').html('学员报名(¥'+data.data.entryprice+')');
+                $('.slideListen').attr('abc',data.data.auditprice);
+                $('.runMatch').attr('abc',data.data.entryprice);
+                genre = data.data.genre;
+                if (listLength%2 == 0) {
+                    $('.musicJuryLongDiv').css('width',110*listLength); 
+                }else{
+                    $('.musicJuryLongDiv').css('width',110*(listLength+1));
+                }
+            }
+            $('.musicTime').each(function(){
+                var i = $('.musicTime').index(this);
+                var htm = Number($(this).html());
+                $('.musicTime').eq(i).html(getYearData(htm));
+            })        
+            var htm = Number($('.musicEnrollSatus').html());
+            console.log(htm);
+            $('.musicEnrollSatus').html(type(htm));
         }
-      
       })
-    // })
     function getData(data){
-      var detail = data.detail;
-      $('.detailH').html('<img src="'+detail.image+'" alt=""><span class="musicStatusD">正在报名·160人·30天后截止</span><div class="detailDiv"><img src="'+detail.icon+'" alt=""><div><p>'+detail.intro+'</p><p><span>报名时间：'+detail.createtime+'-'+detail.endtime+'</span><p>主办方：'+detail.sponsor+'</p></div></div>');
+      var detail = data.data;
+      $('.detailH').html('<img src="'+detail.image+'" alt=""><span class="musicStatusD"><span class="musicEnrollSatus">'+detail.status+'</span>·<span class="musicEnrollNum">'+detail.number+'</span>人·<span class="musicEnrollDay">'+detail.enrolldays+'</span>天后截止</span><div class="detailDiv"><img src="'+detail.icon+'" alt=""><div><p>'+detail.intro+'</p><p><span>报名时间：<span class="musicTime">'+detail.createtime+'</span>-<span class="musicTime">'+detail.endtime+'</span> </span><p>主办方：'+detail.sponsor+'</p></div></div>');
       $('.matchAbsP').html(detail.introduce1);
       // $('.matchAbsP').attr('src',detail.introduce);
       $('.matchZCsP').html(detail.constitution1);
       $('.matchEnrollsP').html(detail.mode1);
-      var list = data.list;
+      var list = data.data.juryList;
       for (var i = 0; i < list.length; i++) {
-        var oli =$('<li><img src="'+list[i].heading+'" alt=""><p>'+list[i].name+'</p><p>'+list[i].skill+'</p></li>');
-        $('.listD').append(oli);
+        var oli =$('<div class="musicJury"><img src="'+list[i].heading+'" alt=""><p class="musicOneP">'+list[i].name+'</p><p class="musicTwoP">'+list[i].skill+'</p></div>');
+        if (i%2 == 0) {
+            $('.singular').append(oli);
+        }else{
+            $('.evenNum').append(oli);
+        }
       }
-      if (detail.status ==1 || detail.status==2) {
-        $('.payFooter').shiw();
+      if (detail.status ==1) {
+        $('.payFooter').show();
       }
     }
     function type(x){
@@ -96,10 +118,10 @@
         "2":"正在进行",
         "3":"已经结束"
       }
-      $('.statusD').html(obj[x]);
+      return obj[x];
     }
     function gotoMatchDetailPageFun(num){
-       location.href = 'matchDetailTwo.html?id='+id+'&userid='+userid+'&status='+matchStatus+'&typeid='+num;
+       location.href = 'musicMatchDetailTwo.html?id='+id+'&userid='+userid+'&status='+matchStatus+'&typeid='+num;
     }
   </script>
 </body>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../js/autoAdapt.js"></script> -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/ort.js"></script>
+  <style>
+      *{
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          box-sizing: border-box;
+          max-height: 999999px;
+      }
+      .matchDetailGotoCon{
+        padding: 32px 32px 152px;
+        font-size: 30px;
+        -webkit-touch-callout:none;
+        -webkit-user-select:none;
+        -khtml-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        -o-user-select:none; 
+        pointer-events: none;
+      }
+      .payFooter{
+            position: fixed;
+            padding: 16px 56px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 120px;
+            background: #FFFFFF;
+            /* box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10); */
+            box-shadow: 0 -18px 8px 0 rgba(0,0,0,0.04);
+        }
+        .downApp{
+            float: right;
+            margin: 16px 0 0 0;
+            width: 204px;
+            height: 72px;
+            position: relative;
+        }
+        .downAppSpan{
+            opacity: 0.3;
+            border: 3px solid #FF2A48;
+            box-shadow: 0 2px 8px 0 rgba(242,50,79,0.30);
+            border-radius: 36px;
+            letter-spacing: 1px;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+        .downAppCon{
+            position: absolute;
+            left: 0;
+            top:0;
+            opacity: 1;
+            font-size: 28px;
+            color: #FF2A48;
+            line-height: 72px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+  </style>
+  <title></title>
+</head>
+<body>
+    <div class="matchDetailGotoCon">
+        
+    </div>
+  <script src="../js/https.js"></script>
+  <script>
+       console.log(location.href);
+        var href = location.href;
+        var arr = href.split('=');
+        console.log(arr);
+        var id = arr[1].split('&')[0]; 
+        var userid = arr[2].split('&')[0]; 
+        var status = arr[3].split('&')[0];
+        var typeid = arr[4];
+        console.log(id,userid,status,typeid);
+        $.ajax({
+            url:httpC+'/zr/match/selectMatchDetail.do?id='+id+'&userid='+userid+'&style=2',
+            type:'POST',
+            success:function(data){
+            // var data = eval('('+data+')');
+            console.log(data);
+                if (data.code == 0) {
+                    console.log(data);
+                    getDetailTypeFun(data.data);
+                }
+            }
+            
+         })
+         function getDetailTypeFun(data){
+             if (typeid==1) {
+               //赛事简介  
+            //   
+                // var htm = data.introduce.split('<body>')[1];
+                $('.matchDetailGotoCon').html(data.introduce);
+                $(document).attr('title','音乐节介绍');
+             } else if(typeid == 2) {
+               //赛事章程  
+                // var htm = data.constitution.split('<body>')[1];
+                $('.matchDetailGotoCon').html(data.constitution);
+                $(document).attr('title','音乐节章程');
+             } else if (typeid == 3){
+               //报名方式
+                // var htm = data.mode.split('<body>')[1];
+                $('.matchDetailGotoCon').html(data.mode);
+                $(document).attr('title','报名方式');
+             }
+         }
+
+  </script>
+</body>
+</html>

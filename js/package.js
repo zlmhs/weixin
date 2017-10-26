@@ -244,6 +244,7 @@ function fileClickFun(i,num){
              $('.huzhao').attr('abc','/'+data.key);
              $('.upImgBtn').html('更换个人护照照片页');
            }else if(num == 2){  
+             $('.headingImg').css('opacity',1);
              $('.headingImg').attr('src','http://cdn.yinyuewujie.com/'+data.key);
              $('.headingImg').attr('abc','/'+data.key);
            }
