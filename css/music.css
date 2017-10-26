@@ -1,0 +1,230 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+.wrap{
+    min-height: 100vh;
+    background: #F6F6F6;
+    padding: 0 0 39px 0;
+}
+input{
+    -webkit-tap-highlight-color: transparent;
+}
+input[type="file"]{
+    width: 100%;
+    height: 88px;
+}
+.auditHeader{
+    width: 100%;
+    border-top: 24px solid #F6F6F6;
+    border-bottom:17px solid #F6F6F6;
+    padding: 0 0 0 32px;
+    background: #fff;
+}
+.musicSelect{
+    border-bottom:1px solid #F6F6F6;
+    overflow: hidden;
+    width: 100%;
+    height: 96px;
+    line-height: 96px;
+}
+.musicSelect:nth-last-of-type(1){
+    border: none;
+}
+.musicSelectSpan{
+    font-size: 28px;
+    color: #444444;
+    letter-spacing: 1.31px;
+    font-weight: 600;
+}
+.musicInputDiv{
+    float: right;
+    position: relative;
+    padding: 0 32px 0 0;
+}
+.musicInputDiv input{
+    height: 96px;
+    line-height: 96px;
+    font-size: 28px;
+    color: #444444;
+    width: 500px;
+}
+.musicInputDiv select{
+    width: 500px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 96px;
+}
+input{
+    border: none;
+    outline: none;
+    /* direction: rtl; */
+    text-align:right;
+    margin: 0 24px 0 0;
+}
+nput::-webkit-input-placeholder { /* WebKit browsers */
+    font-size: 28px;
+    color: #999999;
+  }
+  input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: 28px;
+    color: #999999;
+  }
+  input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: 28px;
+    color: #999999;
+  }
+  input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-size: 28px;
+    color: #999999;
+  }
+.musicJian{
+    width: 30px;
+    color:  #D8D8D8;
+    font-size: 41px;
+    display: inline-block;
+}
+.huzhao{
+    width: 100%;
+    display: block;
+    height: 386px;
+}
+.auditUpImage{
+    padding: 32px;
+    background: #fff;
+}
+.auditUpImageDiv{
+    position: relative;
+}
+.auditUpImage h1{
+    font-size: 28px;
+    color: #444444;
+    letter-spacing: 0;
+    margin: 0 0 24px 0;
+}
+.upHuzhaoImg1{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:88px;
+    opacity:0;
+    z-index: 100;
+}
+.upImgBtn{
+    width: 100%;
+    height: 88px;
+    background: linear-gradient(90deg, #FF2F66 0%, #FF4268 100%);
+    border-radius: 0 0 8px 8px;
+    font-size: 28px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 28px;
+    text-align: center;
+    line-height: 88px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.musicPayMoney{
+    margin: 48px 32px 30px;
+    position: relative;
+}
+.musicPayMoney .nextClick{
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(-90deg, #F51853 0%, #FF2651 100%);
+    border-radius: 40px;
+    font-size: 28px;
+    color: #F6F6F6;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 80px;
+}
+.musicClickModal{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    border-radius: 40px;
+    display: none;
+}
+/* 学员报名 */
+.upHeadingDiv{
+    width: 100%;
+    height: 264px;
+    background: #FFFFFF;
+}
+.upHeadingDiv .upVideoInput1{
+    width:160px;
+    height:160px;
+}
+.upHeadingBtn{
+    width: 160px;
+    height: 160px;
+    margin: 32px auto 0;
+    background: #EFEFEF;
+    position: relative;
+    border-radius: 50%;
+    /* overflow: hidden; */
+}
+.upHeadingP{
+    font-size: 22px;
+    color: #999999;
+    text-align: center;
+    margin: 16px 0 0 0;
+}
+.headingImg{
+    width: 160px;
+    height: 160px;
+    display: block;
+    border-radius:50%;
+}
+.upHeadingDiv .upHuzhaoImg1{
+    width: 160px;
+    height: 160px;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+}
+.upHuzhaoImg2{
+    width: 100%;
+    height: 88px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.upCamera{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    right: 0;
+    top: 19px;
+}
+#musicMatchInfor .auditHeader{
+    border-top:16px solid  #F6F6F6;
+}
+.modalOwn{
+    height: 40px;
+    width: 200px;
+    position: fixed;
+    line-height: 40px;
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -100px;
+    background: pink;
+    color: #fff;
+    display: none;
+    opacity: 0.9;
+    background: #242424;
+    border-radius: 4px;
+    font-size: 22px;
+    color: #FDFDFD;
+    text-align: center;
+  }

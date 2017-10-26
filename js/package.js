@@ -156,3 +156,101 @@ function timeCheckFun(startTime,endTime){
   }
   return obj[x];
 }
+function getYearData(x){
+  if (isNaN(x)) {
+    return x;
+  }
+  else{
+    var d = new Date(x);
+    var Y = d.getFullYear();
+    var M = d.getMonth()+1;
+    if (M<=9) {
+      M = '0'+M;
+    }else{
+      M = M;
+    }
+    var day = d.getDate();
+    if (day<=9) {
+      day = '0'+day
+    }else{
+      day = day;
+    }
+    var hour = d.getHours();
+    if (hour<10) {
+      hour = '0' + hour;
+    }else{
+      hour = hour ;
+    }
+    var min = d.getMinutes();
+    if (min<10) {
+      min = '0' + min;
+    } else {
+      min = min;
+    }
+    var sec = d.getSeconds();
+    if (sec<10) {
+      sec = '0'+sec;
+    } else {
+      sec = sec;
+    }
+    return  Y+'.'+M+'.'+day;
+  }
+}
+function musicDropList(){
+  $('.musicInputDiv select').focus(function(){
+    var i = $('select').index(this);
+    var x = $('.musicInputS').eq(i).val();
+    if ($('.musicInputS').eq(i).val() == x) {
+      $('.musicInputS').eq(i).val($('select').eq(i).find('option:selected').text());
+      $('.musicInputS').eq(i).attr('abc',$('select').eq(i).find('option:selected').attr('abc'));
+    }
+    // $('.musicInputS').eq(i).css('color','#000000');
+  })
+  $('.musicInputDiv select').change(function(){
+    var i = $('select').index(this);
+    $('.musicInputS').eq(i).val($('select').eq(i).find('option:selected').text());
+    $('.musicInputS').eq(i).attr('abc',$('select').eq(i).find('option:selected').attr('abc'));
+    // $('.musicInputS').eq(i).css('color','#000000');
+  })
+}
+function tokenFun(i){
+  $.ajax({
+      url:httpB+'/zr/web/tWXplayer/getUpload_Token.do',
+      type:'POST',
+      success:function(data){
+          if (data.code == 0) {
+              console.log(data);
+              $('.tokenUrl'+i).val(data.data.upload_token);
+          }
+      }
+  })
+}
+function fileClickFun(i,num){
+  var date =new Date().getTime();
+  $('.getTime'+i).val(date);
+  $(".upVideoInput"+i).change(function(){
+      var formData = new FormData($("#myform"+i)[0]);
+      $.ajax({
+          url:"http://upload-z1.qiniu.com",
+          type:"post",
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success:function(data){
+           if (num == 1) {
+             $('.huzhao').attr('src','http://cdn.yinyuewujie.com/'+data.key);
+             $('.huzhao').attr('abc','/'+data.key);
+             $('.upImgBtn').html('更换个人护照照片页');
+           }else if(num == 2){  
+             $('.headingImg').attr('src','http://cdn.yinyuewujie.com/'+data.key);
+             $('.headingImg').attr('abc','/'+data.key);
+           }
+          },
+          error:function(e){
+              alert("错误！！");
+          }
+      });
+  });
+}

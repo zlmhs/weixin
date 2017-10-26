@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script src="../js/autoAdapt.js"></script> -->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/ort.js"></script>
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/music.css">
+    <script src="../js/jquery.form.js"></script>
+    <script src="../js/jquery.js"></script>
+    <title>观摩报名</title>
+</head>
+<body>
+    <div class="wrap" id="musicAudit">
+        <div class="auditHeader">
+            <div class="musicSelect">
+                <span class="musicSelectSpan">真实姓名</span>
+                <div class="musicInputDiv">
+                    <input class="musicName" type="text" placeholder="请输入你的姓名">
+                    <span class="musicJian"></span>
+                </div>
+            </div>
+            <div class="musicSelect">
+                <span class="musicSelectSpan">性别</span>
+                <div class="musicInputDiv">
+                    <input class="musicSex musicInputS"  readonly type="text" placeholder="选择你的性别">
+                    <select name="" id="">
+                        <option value="1" abc="1">男</option>
+                        <option value="0" abc="0">女</option>
+                    </select>
+                    <span class="musicJian">></span>
+                </div>
+            </div>
+            <div class="musicSelect">
+                <span class="musicSelectSpan">联系方式</span>
+                <div class="musicInputDiv">
+                    <input class="phone checkTrue" type="text" placeholder="请输入你的联系方式">
+                    <span class="musicJian"></span>
+                </div>
+            </div>
+        </div>
+        <div class="auditUpImage">
+            <h1>个人护照照片页</h1>
+            <div class="auditUpImageDiv">
+                <img class="huzhao" src="../images/huzhao.png" alt="">
+                <form class="upHuzhaoImg1" id="myform1" method="post" action="http://upload-z2.qiniu.com" enctype="multipart/form-data">
+                    <input class="getTime1" name="key" type="hidden" value="">
+                    <input name="x:<custom_name>" type="hidden" value="">
+                    <input class="tokenUrl1" name="token" type="hidden" value="">
+                    <input onclick="fileClickFun(1,1)" id="upInput1" class="upVideoInput1" style="margin:0;" class="upVideo" name="file" type="file" accept="image/*" value=""/>
+                    <input name="accept" type="hidden" value="" />
+                </form>
+                <p class="upImgBtn">上传个人护照照片页</p>
+            </div>
+        </div>
+        <div class="musicPayMoney">
+           <p class="nextClick" onclick="saveFun()">
+            下一步
+           </p>
+           <p class="musicClickModal"></p>
+        </div>
+        <div class="modalOwn">
+            信息填写不完整
+          </div>
+    </div>
+    <script src="../js/https.js"></script>
+    <script src="../js/package.js"></script>
+    <script>
+        musicDropList();
+        tokenFun(1);
+        checkFun();
+        var href = location.href;
+        var arr = href.split('=');
+        var id = arr[1].split('&')[0];
+        var userid = arr[2].split('&')[0];
+        var money = arr[3];
+        function saveFun(){
+            var x;
+            var data;
+                url = httpC+'/zr/tCompet/insertWatch.do';
+                data={
+                    name:$('.musicName').val(),
+                    sex:$('.musicSex').attr('abc'),
+                    phone:$('.phone').val(),
+                    passimg:$('.huzhao').attr('abc'),
+                    matchid:id,
+                    userid:userid
+                };
+                console.log('data',data);
+                for (var x in data) {
+                    console.log(x); // key
+                    console.log(data[x]);//value
+                    if (data[x] == undefined || data[x] == '') {
+                        alert('请把信息填写完整');
+                        return false;
+                    }
+                }
+                $('.musicClickModal').show();
+                setTimeout(function(){
+                    $('.musicClickModal').hide();
+                },5000);
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data:data,
+                    success: function(data) {
+                        console.log(data);
+                        if(data.code==0){
+                            //支付
+                            $.ajax({
+                                url:httpC+'/zr/tOrders/getMusicWatchOrders.do?matchid='+id+'&userid='+userid,
+                                type:'POST',
+                                success:function(data){
+                                    console.log(data);
+                                    if (data.code == 0) {
+                                        var ordernum=data.data.ordersnum;
+                                        // location.href='../WxMainServlet?product='+ordernum+'&money='+money+'&matchid='+id+'&userid='+userid;
+                                        console.log(data);
+                                    }
+                                }
+                            })
+                        }
+                    }
+                });
+        }
+
+    </script>
+</body>
+</html>

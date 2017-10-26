@@ -2003,6 +2003,9 @@
   border: 1px solid #DDDDDD;
   border-radius: 28px;
 }
+.detailH .detailDiv div p:nth-of-type(2) span:nth-of-type(2).musicTime{
+  margin: 0;
+}
 .coursePayNumThree{
   width: 80px;
   text-align: center;
@@ -2026,8 +2029,9 @@
   height: 48px;
   line-height: 48px;
   padding: 0 38px;
-  background: linear-gradient(90deg, #4285F4 0%, #5A96FF 100%);
-  box-shadow: 0 1px 1px 0 #5190FB;
+  background: linear-gradient(-90deg, #FF9364 0%, #F76B1C 100%);
+  box-shadow: 0 1px 2px 0 #F76C1E;
+  border-radius: 24px;
   border-radius: 24px;
   transform: translate(-34%,0);
   -webkit-transform: translate(-34%,0);
@@ -2042,6 +2046,7 @@
   width: 120px;
   height: 120px;
   margin: 0 16px 0 0;
+  border-radius: 50%;
 }
 #musicDetail .detailH .detailDiv div{
   max-width: 550px;
@@ -2088,6 +2093,12 @@
   letter-spacing: -1px;
   line-height: 32px;
 }
+#musicDetail .detailAbstract h1 span.enrollSpan{
+  font-size: 32px;
+  color: #32B9FF;
+  letter-spacing: -1px;
+  line-height: 32px;
+}
 #musicDetail .matchDetailJian{
   font-size: 24px;
 }
@@ -2111,4 +2122,89 @@
 }
 #musicDetail .detailPeople ul li p:nth-of-type(2){
   height: 22px;
+}
+#musicDetail .detailPeople .listD div img{
+  display:block;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 0 auto;
+  object-fit: cover;
+  /* position: absolute;
+  left:50%;
+  top:0;
+  margin:0 65px 0 -80px; */
+}
+#musicDetail .detailPeople .listD{
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 40px 0 0 0;
+}
+#musicDetail .detailPeople .listD::-webkit-scrollbar{
+  display: none;
+}
+#musicDetail .detailPeople .listD .musicJury{
+  margin: 0;
+  min-width: 160px;
+  position: relative;
+  width:220px;
+  max-width:220px;
+  float: left;
+}
+#musicDetail .detailPeople .listD .musicJury p{
+  text-align: center;
+}
+.musicOneP{
+  font-size: 28px;
+  color: #222222;
+  letter-spacing: -0.88px;
+  line-height: 28px;
+  margin: 24px 0 10px ;
+}
+.musicJuryLongDiv{
+  width: 4000px;
+}
+.musicTwoP{
+  font-size: 22px;
+  color: #999999;
+  letter-spacing: -0.88px;
+  line-height: 22px;
+  margin: 0 0 40px;
+}
+#musicDetail .detailPeople .listD div p:nth-of-type(2){
+  height: 22px;
+}
+.singular ,.evenNum{
+  overflow: hidden;
+}
+#musicDetail .detailAbstract{
+  margin: 0 30px 0 0;
+}
+/* 音乐节的底部 */
+.musicfooter{
+  width: 100%;
+  height: 98px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  line-height: 98px;
+  overflow: hidden;
+  display: none;
+}
+.musicfooter span{
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.musicfooter .slideListen{
+  background: #FFF;
+  font-size: 28px;
+  color: #999999;
+}
+.musicfooter .runMatch{
+  font-size: 28px;
+  color: #F6F6F6;
+  background: linear-gradient(-90deg, #F51853 0%, #FF2651 100%);
 }
